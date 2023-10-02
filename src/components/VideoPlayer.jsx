@@ -2,14 +2,30 @@ import { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import videojs from 'video.js';
 import 'video.js/dist/video-js.css';
-import '../vjs-theme.css';
 
-export const VideoPlayer = (props) => {
+function VideoPlayer() {
   const videoRef = useRef(null);
   const playerRef = useRef(null);
-  const { options } = props;
 
   useEffect(() => {
+    const options = {
+      autoplay: false,
+      muted: true,
+      controls: true,
+      responsive: true,
+      fluid: true,
+      loop: true,
+      liveui: true,
+      sources: [
+        {
+          src: './fuji.mp4',
+          type: 'video/mp4',
+          //src: 'http://195.148.104.124:1935/jakelu/ulla/playlist.m3u8',
+          //type: 'application/x-mpegURL',
+        },
+      ],
+    };
+
     // Make sure Video.js player is only initialized once
     if (!playerRef.current) {
       // The Video.js player needs to be _inside_ the component el for React 18 Strict Mode.
@@ -20,14 +36,15 @@ export const VideoPlayer = (props) => {
 
       const player = (playerRef.current = videojs(videoElement, options, () => {
         player.on('waiting', () => {
-          videojs.log('player is waiting');
+          //videojs.log('player is waiting');
         });
 
         player.on('dispose', () => {
-          videojs.log('player will dispose');
+          //videojs.log('player will dispose');
         });
       }));
-      player.addClass('vjs-theme-city');
+
+      //player.addClass('vjs-theme-city');
 
       // You could update an existing player in the `else` block here
       // on prop change, for example:
@@ -37,7 +54,7 @@ export const VideoPlayer = (props) => {
       player.autoplay(options.autoplay);
       player.src(options.sources);
     }
-  }, [options, videoRef]);
+  }, [videoRef]);
 
   // Dispose the Video.js player when the functional component unmounts
   useEffect(() => {
@@ -56,7 +73,7 @@ export const VideoPlayer = (props) => {
       <div ref={videoRef} />
     </div>
   );
-};
+}
 
 VideoPlayer.propTypes = {
   options: PropTypes.object,
