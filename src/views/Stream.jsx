@@ -56,7 +56,7 @@ function Stream() {
   }, [windowOpen]);
 
   return (
-    <div className={windowOpen ? 'flex justify-center h-[100vh] overflow-hidden' : 'flex flex-col lg:flex-row items-center h-[100vh]'}>
+    <div className={windowOpen ? 'flex justify-center h-full overflow-hidden' : 'flex flex-col lg:flex-row items-center h-full'}>
       <div id="video" className={windowOpen ? 'h-full' : 'w-full flex-grow-0 flex-shrink basis-auto p-2'}>
         <div className={windowOpen ? '' : 'rounded-md overflow-hidden'}>
           <VideoPlayer></VideoPlayer>

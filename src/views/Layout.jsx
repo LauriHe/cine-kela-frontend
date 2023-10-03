@@ -2,7 +2,7 @@ import { Outlet } from 'react-router-dom';
 
 function Layout() {
   return (
-    <div className="flex flex-col min-h-[100vh]">
+    <div className="flex flex-col h-[100vh]">
       <nav className="h-20"></nav>
       <main className="flex-grow">
         <Outlet />
