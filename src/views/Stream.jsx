@@ -57,16 +57,18 @@ function Stream() {
 
   return (
     <div className={windowOpen ? 'flex justify-center h-[100vh] overflow-hidden' : 'flex flex-col lg:flex-row items-center h-[100vh]'}>
-      <div id="video" className={windowOpen ? 'h-full' : 'w-full flex-grow-0 flex-shrink basis-auto'}>
-        <VideoPlayer></VideoPlayer>
+      <div id="video" className={windowOpen ? 'h-full' : 'w-full flex-grow-0 flex-shrink basis-auto p-2'}>
+        <div className={windowOpen ? '' : 'rounded-md overflow-hidden'}>
+          <VideoPlayer></VideoPlayer>
+        </div>
       </div>
-      <div id="chat" className={windowOpen ? '' : 'w-full lg:w-[25rem] lg:h-full flex-grow flex-shrink basis-auto'}>
+      <div id="chat" className={windowOpen ? '' : 'w-full lg:w-[25rem] lg:h-full flex-grow flex-shrink basis-auto p-2'}>
         {windowOpen ? (
           <NewWindow>
-            <Chat handleWindow={handleWindowButton}></Chat>
+            <Chat handleWindow={handleWindowButton} windowed={windowOpen}></Chat>
           </NewWindow>
         ) : (
-          <Chat handleWindow={handleWindowButton}></Chat>
+          <Chat handleWindow={handleWindowButton} windowed={windowOpen}></Chat>
         )}
       </div>
     </div>
