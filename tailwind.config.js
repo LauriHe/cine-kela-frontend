@@ -9,6 +9,7 @@ export default {
         "oc-desert-yellow": "#f4d4b8",
         "oc-cold-white": "#edf3fd",
         "oc-rosy-pink": "#d3979b",
+        "oc-hover-pink": "#B75259",
       },
     },
   },
