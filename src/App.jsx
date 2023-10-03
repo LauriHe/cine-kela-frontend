@@ -1,7 +1,8 @@
-import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
-import Home from './views/Home';
-import Layout from './views/Layout';
-import Stream from './views/Stream';
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import Home from "./views/Home";
+import Layout from "./views/Layout";
+import Stream from "./views/Stream";
+import Schedule from "./views/Schedule";
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
         <Route element={<Layout></Layout>}>
           <Route path="/" element={<Home></Home>} />
           <Route path="/stream" element={<Stream></Stream>} />
+          <Route path="/schedule" element={<Schedule></Schedule>} />
         </Route>
       </Routes>
     </Router>
