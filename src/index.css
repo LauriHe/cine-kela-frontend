@@ -1,3 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.card:hover > div > video {
+  display: block;
+}
+
+.card:hover > div > p {
+  display: block;
+}
+.card > div > video {
+  display: none;
+}
+
+.card > div > p {
+  display: none;
+}
