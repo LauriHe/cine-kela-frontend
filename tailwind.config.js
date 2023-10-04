@@ -25,6 +25,12 @@ export default {
 
       '2xl': '1536px',
     },
+    backgroundSize: {
+      auto: 'auto',
+      cover: 'cover',
+      contain: 'contain',
+      icon: '1.7rem',
+    },
   },
   plugins: [],
 };
