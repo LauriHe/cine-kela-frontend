@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import VideoPlayer from '../components/VideoPlayer';
-import Chat from '../components/chat';
+import Chat from '../components/Chat';
 import NewWindow from 'react-new-window';
 
 function Stream() {
@@ -11,11 +11,14 @@ function Stream() {
   };
 
   useEffect(() => {
-    const videoJs = document.querySelector('.video-js');
+    const videoJs = document.querySelector('video');
+    const vjsControlBar = document.querySelector('.vjs-control-bar');
     if (windowOpen) {
-      videoJs.classList.remove('border');
+      videoJs.style.borderRadius = '0px';
+      vjsControlBar.style.borderRadius = '0px';
     } else {
-      videoJs.classList.add('border');
+      videoJs.style.borderRadius = '0.375rem';
+      vjsControlBar.style.borderRadius = '0 0 0.375rem 0.375rem';
     }
   }, [windowOpen]);
 
@@ -26,7 +29,7 @@ function Stream() {
           <VideoPlayer></VideoPlayer>
         </div>
       </div>
-      <div id="chat" className={windowOpen ? '' : 'w-full max-h-[50%] flex-1 lg:flex-none lg:w-[20rem] lg:max-h-none lg:h-full p-2'}>
+      <div id="chat" className={windowOpen ? '' : 'w-full h-[65%] lg:flex-none lg:w-[20rem] lg:h-full p-2'}>
         {windowOpen ? (
           <NewWindow>
             <Chat handleWindow={handleWindowButton} windowed={windowOpen}></Chat>

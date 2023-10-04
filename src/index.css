@@ -18,8 +18,9 @@ main {
 .video-js {
   width: 100% !important;
   height: 100% !important;
+  background-color: #191e39;
 }
 
-.border {
-  border-radius: 0.375rem;
+.vjs-control-bar {
+  border: none !important;
 }

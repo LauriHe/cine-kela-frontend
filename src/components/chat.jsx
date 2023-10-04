@@ -75,51 +75,65 @@ function Chat({ handleWindow, windowed }) {
   return (
     <div
       className={
-        windowed ? 'bg-gray-700 w-full h-full flex flex-col justify-between' : 'bg-gray-700 w-full h-full rounded-md flex flex-col justify-between'
+        windowed
+          ? 'bg-oc-pastel-blue w-full h-full flex flex-col justify-between'
+          : 'bg-oc-pastel-blue w-full h-full rounded-md flex flex-col justify-between'
       }
     >
-      <div id="buttons" className="flex flex-col items-end gap-4 flex-grow-0 flex-shrink basis-auto">
-        <button className="w-fit h-fit text-white bg-gray-800 p-1 rounded-md m-2" onClick={handleWindow}>
-          Toggle window
-        </button>
-        <div className="w-full flex justify-around">
+      <div
+        id="buttons"
+        className={
+          windowed
+            ? 'flex flex-row-reverse justify-around xs:justify-center xs:gap-10 pt-2 flex-grow-0 flex-shrink basis-auto'
+            : 'flex flex-row-reverse justify-around xs:justify-center xs:gap-10 pt-2 lg:flex-row lg:flex-wrap lg:gap-y-4 flex-grow-0 flex-shrink basis-auto'
+        }
+      >
+        <div className={windowed ? 'w-fit h-fit' : 'w-fit h-fit lg:w-full lg:flex lg:justify-end lg:pr-2'}>
           <button
             className={
-              currentRoom === 'room1'
-                ? 'h-fit w-fit p-1 rounded-md bg-gray-950 text-white text-sm'
-                : 'h-fit w-fit p-1 rounded-md bg-gray-800 text-white text-sm'
+              windowed
+                ? 'w-8 h-8 bg-oc-space-blue rounded-md bg-[url(./dock.svg)] bg-cover'
+                : 'w-8 h-8 bg-oc-space-blue rounded-md bg-[url(./pip.svg)] bg-cover'
             }
-            onClick={() => {
-              joinRoom('room1');
-            }}
-          >
-            Huone 1
-          </button>
-          <button
-            className={
-              currentRoom === 'room2'
-                ? 'h-fit w-fit p-1 rounded-md bg-gray-950 text-white text-sm'
-                : 'h-fit w-fit p-1 rounded-md bg-gray-800 text-white text-sm'
-            }
-            onClick={() => {
-              joinRoom('room2');
-            }}
-          >
-            Huone 2
-          </button>
-          <button
-            className={
-              currentRoom === 'room3'
-                ? 'h-fit w-fit p-1 rounded-md bg-gray-950 text-white text-sm'
-                : 'h-fit w-fit p-1 rounded-md bg-gray-800 text-white text-sm'
-            }
-            onClick={() => {
-              joinRoom('room3');
-            }}
-          >
-            Huone 3
-          </button>
+            onClick={handleWindow}
+          ></button>
         </div>
+        <button
+          className={
+            currentRoom === 'room1'
+              ? 'h-fit w-fit p-1 rounded-md  bg-black text-white text-sm'
+              : 'h-fit w-fit p-1 rounded-md bg-oc-space-blue text-white text-sm'
+          }
+          onClick={() => {
+            joinRoom('room1');
+          }}
+        >
+          Huone 1
+        </button>
+        <button
+          className={
+            currentRoom === 'room2'
+              ? 'h-fit w-fit p-1 rounded-md  bg-black text-white text-sm'
+              : 'h-fit w-fit p-1 rounded-md bg-oc-space-blue text-white text-sm'
+          }
+          onClick={() => {
+            joinRoom('room2');
+          }}
+        >
+          Huone 2
+        </button>
+        <button
+          className={
+            currentRoom === 'room3'
+              ? 'h-fit w-fit p-1 rounded-md  bg-black text-white text-sm'
+              : 'h-fit w-fit p-1 rounded-md bg-oc-space-blue text-white text-sm'
+          }
+          onClick={() => {
+            joinRoom('room3');
+          }}
+        >
+          Huone 3
+        </button>
       </div>
       <div id="chat-messages" className="flex flex-col-reverse flex-grow flex-shrink basis-auto overflow-auto mt-2 relative">
         {chatMessages.map((message, index) => {
