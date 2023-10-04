@@ -10,59 +10,23 @@ function Stream() {
     setWindowOpen(!windowOpen);
   };
 
-  const handleChatResize = (chat, video) => {
-    let chatHeight = chat.offsetHeight;
-    let videoHeight = video.offsetHeight;
-
-    if (chatHeight < videoHeight) {
-      chat.style.height = videoHeight + 'px';
-    }
-
-    if (window.innerHeight > videoHeight) {
-      chat.style.height = '100%';
-    }
-  };
-
-  const handleVideoResize = (video) => {
-    let videoHeight = video.offsetHeight;
-
-    if (videoHeight === window.innerHeight) {
-      video.style.width = videoHeight * 1.7777777778 + 'px';
-    }
-  };
-
   useEffect(() => {
-    const video = document.getElementById('video');
-    const chat = document.getElementById('chat');
-
-    if (!windowOpen) {
-      handleChatResize(chat, video);
-      window.addEventListener('resize', () => {
-        handleChatResize(chat, video);
-      });
-    }
-  }, [windowOpen]);
-
-  useEffect(() => {
-    const video = document.getElementById('video');
+    const videoJs = document.querySelector('.video-js');
     if (windowOpen) {
-      handleVideoResize(video);
-      window.addEventListener('resize', () => {
-        handleVideoResize(video);
-      });
+      videoJs.classList.remove('border');
     } else {
-      video.style.width = '100%';
+      videoJs.classList.add('border');
     }
   }, [windowOpen]);
 
   return (
     <div className={windowOpen ? 'flex justify-center h-full overflow-hidden' : 'flex flex-col lg:flex-row items-center h-full'}>
-      <div id="video" className={windowOpen ? 'h-full' : 'w-full flex-grow-0 flex-shrink basis-auto p-2'}>
-        <div className={windowOpen ? '' : 'rounded-md overflow-hidden'}>
+      <div id="video" className={windowOpen ? 'h-full w-full' : 'h-full w-full flex-1 p-2'}>
+        <div className={windowOpen ? 'h-full' : 'rounded-md h-full'}>
           <VideoPlayer></VideoPlayer>
         </div>
       </div>
-      <div id="chat" className={windowOpen ? '' : 'w-full lg:w-[25rem] lg:h-full flex-grow flex-shrink basis-auto p-2'}>
+      <div id="chat" className={windowOpen ? '' : 'w-full max-h-[50%] flex-1 lg:flex-none lg:w-[20rem] lg:max-h-none lg:h-full p-2'}>
         {windowOpen ? (
           <NewWindow>
             <Chat handleWindow={handleWindowButton} windowed={windowOpen}></Chat>
