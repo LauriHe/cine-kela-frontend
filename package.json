@@ -14,7 +14,8 @@
     "react-dom": "^18.2.0",
     "react-new-window": "^1.0.1",
     "react-router-dom": "^6.16.0",
-    "socket.io-client": "^4.7.2"
+    "socket.io-client": "^4.7.2",
+    "tsparticles-confetti": "^2.12.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",

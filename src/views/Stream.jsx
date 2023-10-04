@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import VideoPlayer from '../components/VideoPlayer';
-import Chat from '../components/chat';
+import Chat from '../components/Chat';
 import NewWindow from 'react-new-window';
 
 function Stream() {
@@ -10,63 +10,32 @@ function Stream() {
     setWindowOpen(!windowOpen);
   };
 
-  const handleChatResize = (chat, video) => {
-    let chatHeight = chat.offsetHeight;
-    let videoHeight = video.offsetHeight;
-
-    if (chatHeight < videoHeight) {
-      chat.style.height = videoHeight + 'px';
-    }
-
-    if (window.innerHeight > videoHeight) {
-      chat.style.height = '100%';
-    }
-  };
-
-  const handleVideoResize = (video) => {
-    let videoHeight = video.offsetHeight;
-
-    if (videoHeight === window.innerHeight) {
-      video.style.width = videoHeight * 1.7777777778 + 'px';
-    }
-  };
-
   useEffect(() => {
-    const video = document.getElementById('video');
-    const chat = document.getElementById('chat');
-
-    if (!windowOpen) {
-      handleChatResize(chat, video);
-      window.addEventListener('resize', () => {
-        handleChatResize(chat, video);
-      });
-    }
-  }, [windowOpen]);
-
-  useEffect(() => {
-    const video = document.getElementById('video');
+    const videoJs = document.querySelector('video');
+    const vjsControlBar = document.querySelector('.vjs-control-bar');
     if (windowOpen) {
-      handleVideoResize(video);
-      window.addEventListener('resize', () => {
-        handleVideoResize(video);
-      });
+      videoJs.style.borderRadius = '0px';
+      vjsControlBar.style.borderRadius = '0px';
     } else {
-      video.style.width = '100%';
+      videoJs.style.borderRadius = '0.375rem';
+      vjsControlBar.style.borderRadius = '0 0 0.375rem 0.375rem';
     }
   }, [windowOpen]);
 
   return (
-    <div className={windowOpen ? 'flex justify-center h-[100vh] overflow-hidden' : 'flex flex-col lg:flex-row items-center h-[100vh]'}>
-      <div id="video" className={windowOpen ? 'h-full' : 'w-full flex-grow-0 flex-shrink basis-auto'}>
-        <VideoPlayer></VideoPlayer>
+    <div className={windowOpen ? 'flex justify-center h-full overflow-hidden' : 'flex flex-col lg:flex-row items-center h-full'}>
+      <div id="video" className={windowOpen ? 'h-full w-full' : 'h-full w-full flex-1 p-2'}>
+        <div className={windowOpen ? 'h-full' : 'rounded-md h-full'}>
+          <VideoPlayer></VideoPlayer>
+        </div>
       </div>
-      <div id="chat" className={windowOpen ? '' : 'w-full lg:w-[25rem] lg:h-full flex-grow flex-shrink basis-auto'}>
+      <div id="chat" className={windowOpen ? '' : 'w-full h-[65%] lg:flex-none lg:w-[20rem] lg:h-full p-2'}>
         {windowOpen ? (
           <NewWindow>
-            <Chat handleWindow={handleWindowButton}></Chat>
+            <Chat handleWindow={handleWindowButton} windowed={windowOpen}></Chat>
           </NewWindow>
         ) : (
-          <Chat handleWindow={handleWindowButton}></Chat>
+          <Chat handleWindow={handleWindowButton} windowed={windowOpen}></Chat>
         )}
       </div>
     </div>

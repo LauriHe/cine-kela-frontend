@@ -16,3 +16,26 @@
 .card > div > p {
   display: none;
 }
+
+#chat-messages::-webkit-scrollbar {
+  display: none;
+}
+
+#chat-messages {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+main {
+  height: calc(100vh - 80px);
+}
+
+.video-js {
+  width: 100% !important;
+  height: 100% !important;
+  background-color: #191e39;
+}
+
+.vjs-control-bar {
+  border: none !important;
+}
