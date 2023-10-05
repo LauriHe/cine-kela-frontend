@@ -12,8 +12,8 @@ function VideoPlayer() {
       autoplay: false,
       muted: true,
       controls: true,
-      responsive: true,
-      fluid: true,
+      responsive: false,
+      fluid: false,
       loop: true,
       liveui: true,
       sources: [
@@ -69,8 +69,8 @@ function VideoPlayer() {
   }, [playerRef]);
 
   return (
-    <div data-vjs-player>
-      <div ref={videoRef} />
+    <div data-vjs-player className="h-full">
+      <div ref={videoRef} className="h-full" />
     </div>
   );
 }
