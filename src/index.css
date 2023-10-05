@@ -5,6 +5,9 @@
 .card:hover > div > video {
   display: block;
 }
+.card:hover > .day {
+  display: none;
+}
 
 .card:hover > div > p {
   display: block;
