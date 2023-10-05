@@ -3,7 +3,6 @@ import Home from "./views/Home";
 import Layout from "./views/Layout";
 import Stream from "./views/Stream";
 import Schedule from "./views/Schedule";
-import ParticleTest from "./views/ParticleTest";
 
 function App() {
   return (
