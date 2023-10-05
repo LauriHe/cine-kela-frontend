@@ -10,6 +10,7 @@ export default {
         "oc-cold-white": "#edf3fd",
         "oc-rosy-pink": "#d3979b",
         "oc-hover-pink": "#B75259",
+        "oc-test": "#ECB483",
       },
     },
   },
