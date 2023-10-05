@@ -4,15 +4,101 @@ import { socket } from '../utils/socket';
 import ChatMessage from './ChatMessage';
 import { confetti } from 'tsparticles-confetti';
 
-function Chat({ handleWindow, windowed }) {
+function Chat({ handleWindow, windowed, setDonationData }) {
   const [input, setInput] = useState('');
   const [chatMessages, setChatMessages] = useState([]);
   const [socketConnected, setSocketConnected] = useState(false);
   const [inputPlaceholder, setInputPlaceholder] = useState('Input a username');
   const [inputError, setInputError] = useState(false);
   const [currentRoom, setCurrentRoom] = useState('room1');
-  const [emojiOpen, setEmojiOpen] = useState(false);
-  const [emojiOpenFinished, setEmojiOpenFinished] = useState(false);
+  const [emojiDonateOpen, setEmojiDonateOpen] = useState(false);
+  const [showEmoji, setShowEmoji] = useState(false);
+  const [showDonate, setShowDonate] = useState(false);
+
+  const [donateMessage, setDonateMessage] = useState('');
+  const [donateAmount, setDonateAmount] = useState(5);
+  const [donateInputPlaceholder, setDonateInputPlaceholder] = useState('Input a message');
+  const [donateInputError, setDonateInputError] = useState(false);
+
+  const handleInputChange = (event) => {
+    setInput(event.target.value);
+  };
+
+  const handleMessageSubmit = (event) => {
+    event.preventDefault();
+    socket.emit('chat messages', input);
+    setInput('');
+  };
+
+  const handleUsernameSubmit = (event) => {
+    event.preventDefault();
+    const username = input;
+    socket.auth = { username };
+    socket.connect();
+    socket.on('connect', () => {
+      setSocketConnected(true);
+      setInputError(false);
+      setInputPlaceholder('Write a message');
+      setInput('');
+    });
+  };
+
+  const handleDonateInputChange = (event) => {
+    setDonateMessage(event.target.value);
+  };
+
+  const handleDonateAmountChange = (event) => {
+    setDonateAmount(event.target.value);
+  };
+
+  const handleDonationSubmit = (event) => {
+    event.preventDefault();
+    setDonateMessage('');
+    socket.emit('donations', donateAmount, donateMessage);
+  };
+
+  const handleEmojiSubmit = (event) => {
+    const emoji = event.target.value;
+    socket.emit('chat messages', emoji, true);
+  };
+
+  const joinRoom = (room) => {
+    setChatMessages([]);
+    socket.emit('join', room);
+    setCurrentRoom(room);
+  };
+
+  const toggleEmoji = () => {
+    if (!emojiDonateOpen) {
+      setEmojiDonateOpen(true);
+      setShowEmoji(true);
+    } else {
+      if (showDonate) {
+        setShowDonate(false);
+        setShowEmoji(true);
+      }
+      if (showEmoji) {
+        setShowEmoji(false);
+        setEmojiDonateOpen(false);
+      }
+    }
+  };
+
+  const toggleDonate = () => {
+    if (!emojiDonateOpen) {
+      setEmojiDonateOpen(true);
+      setShowDonate(true);
+    } else {
+      if (showEmoji) {
+        setShowEmoji(false);
+        setShowDonate(true);
+      }
+      if (showDonate) {
+        setShowDonate(false);
+        setEmojiDonateOpen(false);
+      }
+    }
+  };
 
   const renderConfetti = async () => {
     const duration = 0.5 * 1000,
@@ -48,44 +134,6 @@ function Chat({ handleWindow, windowed }) {
     }, 50);
   };
 
-  const handleInputChange = (event) => {
-    setInput(event.target.value);
-  };
-
-  const handleMessageSubmit = (event) => {
-    event.preventDefault();
-    socket.emit('chat messages', input);
-    setInput('');
-  };
-
-  const handleUsernameSubmit = (event) => {
-    event.preventDefault();
-    const username = input;
-    socket.auth = { username };
-    socket.connect();
-    setSocketConnected(true);
-    setInputError(false);
-    setInputPlaceholder('Write a message');
-    setInput('');
-  };
-
-  const joinRoom = (room) => {
-    setChatMessages([]);
-    socket.emit('join', room);
-    setCurrentRoom(room);
-  };
-
-  const toggleEmoji = () => {
-    setEmojiOpen(!emojiOpen);
-    if (!emojiOpen) {
-      setTimeout(() => {
-        setEmojiOpenFinished(true);
-      }, 300);
-    } else {
-      setEmojiOpenFinished(false);
-    }
-  };
-
   useEffect(() => {
     if (socketConnected) {
       socket.emit('chat messages', '');
@@ -93,31 +141,41 @@ function Chat({ handleWindow, windowed }) {
       socket.on('chat messages', (messages) => {
         setChatMessages(messages);
       });
+
+      setDonateInputError(false);
+      setDonateInputPlaceholder('Write a message');
+      socket.on('donations', (donation) => {
+        setDonationData(donation);
+      });
+      socket.on('donationGoalReached', () => {
+        renderConfetti();
+      });
+    } else if (socket.connected) {
+      setInputPlaceholder('Write a message');
+      setSocketConnected(true);
     }
-  }, [socketConnected, currentRoom]);
+  }, [socketConnected, currentRoom, setDonationData]);
 
   useEffect(() => {
     socket.on('connect_error', (err) => {
       if (err.message === 'invalid username') {
         setSocketConnected(false);
-        setInputError(true);
-        setInputPlaceholder('Invalid username');
-        socket.disconnect();
+        setInputPlaceholder('Input a username');
       } else if (err.message === 'username taken') {
         setSocketConnected(false);
         setInputError(true);
         setInputPlaceholder('Username taken');
-        socket.disconnect();
       } else {
         setSocketConnected(false);
         setInputPlaceholder('Input a username');
       }
     });
 
-    return () => {
+    /*return () => {
       socket.disconnect();
+      socket.off('connect_error');
       socket.off('chat messages');
-    };
+    };*/
   }, []);
 
   return (
@@ -154,24 +212,78 @@ function Chat({ handleWindow, windowed }) {
           return <ChatMessage message={message} key={index}></ChatMessage>;
         })}
       </div>
-      <div className={emojiOpen ? 'w-full p-2 relative' : 'w-full p-0 relative'}>
-        <div className={emojiOpen ? 'emoji-container' : 'h-0'} style={{ transition: 'height 0.3s ease-in-out' }}>
+      <div className={emojiDonateOpen ? 'w-full p-2 relative' : 'w-full p-0 relative'}>
+        <div className={emojiDonateOpen ? 'emoji-container' : 'h-0'}>
           <button
-            className={emojiOpen ? 'icon-btn emoji-toggle-btn' : 'icon-btn emoji-toggle-btn -top-8'}
-            style={emojiOpen ? { borderRadius: '0.375rem 0.375rem 0 0' } : { borderRadius: '0.375rem' }}
+            className={emojiDonateOpen ? 'icon-btn emoji-toggle-btn' : 'icon-btn emoji-toggle-btn -top-8'}
+            style={emojiDonateOpen ? { borderRadius: '0.375rem 0.375rem 0 0' } : { borderRadius: '0.375rem' }}
             onClick={toggleEmoji}
           ></button>
-          <div className={emojiOpenFinished ? 'flex gap-2 flex-wrap justify-around items-center' : 'hidden'}>
-            <button className="icon-btn emoji-btn bg-[url(./capLamme.png)]" onClick={renderConfetti}></button>
-            <button className="icon-btn emoji-btn bg-[url(./capTea.png)]"></button>
-            <button className="icon-btn emoji-btn bg-[url(./fishBrain.png)]"></button>
-            <button className="icon-btn emoji-btn bg-[url(./moti.png)]"></button>
-            <button className="icon-btn emoji-btn bg-[url(./poop.png)]"></button>
-            <button className="icon-btn emoji-btn bg-[url(./tataru.png)]"></button>
-            <button className="icon-btn emoji-btn bg-[url(./catge.png)]"></button>
-            <button className="icon-btn emoji-btn bg-[url(./dogege.png)]"></button>
-            <button className="icon-btn emoji-btn bg-[url(./pepeNo.png)]"></button>
-            <button className="icon-btn emoji-btn bg-[url(./pepeYes.png)]"></button>
+          <button
+            className={emojiDonateOpen ? 'icon-btn donate-toggle-btn' : 'icon-btn donate-toggle-btn -top-8'}
+            style={emojiDonateOpen ? { borderRadius: '0.375rem 0.375rem 0 0' } : { borderRadius: '0.375rem' }}
+            onClick={toggleDonate}
+          ></button>
+          <div className={showEmoji && socketConnected ? 'flex gap-4 flex-wrap justify-center items-center' : 'hidden'}>
+            <button className="icon-btn emoji-btn bg-[url(./capLamme.png)]" value={'capLamme'} onClick={handleEmojiSubmit}></button>
+            <button className="icon-btn emoji-btn bg-[url(./capTea.png)]" value={'capTea'} onClick={handleEmojiSubmit}></button>
+            <button className="icon-btn emoji-btn bg-[url(./fishBrain.png)]" value={'fishBrain'} onClick={handleEmojiSubmit}></button>
+            <button className="icon-btn emoji-btn bg-[url(./moti.png)]" value={'moti'} onClick={handleEmojiSubmit}></button>
+            <button className="icon-btn emoji-btn bg-[url(./poop.png)]" value={'poop'} onClick={handleEmojiSubmit}></button>
+            <button className="icon-btn emoji-btn bg-[url(./tataru.png)]" value={'tataru'} onClick={handleEmojiSubmit}></button>
+            <button className="icon-btn emoji-btn bg-[url(./catge.png)]" value={'catge'} onClick={handleEmojiSubmit}></button>
+            <button className="icon-btn emoji-btn bg-[url(./dogege.png)]" value={'dogege'} onClick={handleEmojiSubmit}></button>
+            <button className="icon-btn emoji-btn bg-[url(./pepeNo.png)]" value={'pepeNo'} onClick={handleEmojiSubmit}></button>
+            <button className="icon-btn emoji-btn bg-[url(./pepeYes.png)]" value={'pepeYes'} onClick={handleEmojiSubmit}></button>
+          </div>
+          <div className={showEmoji && !socketConnected ? '' : 'hidden'}>
+            <p className="text-white">Submit a username to emote</p>
+          </div>
+          <form
+            className={showDonate && socketConnected ? 'h-full flex flex-col justify-around items-center' : 'hidden'}
+            onSubmit={handleDonationSubmit}
+          >
+            <div className="w-full flex justify-around">
+              <button
+                className={donateAmount == 5 ? 'btn bg-black py-1' : 'btn bg-oc-pastel-blue py-1'}
+                type="button"
+                value={5}
+                onClick={handleDonateAmountChange}
+              >
+                5€
+              </button>
+              <button
+                className={donateAmount == 10 ? 'btn bg-black py-1' : 'btn bg-oc-pastel-blue py-1'}
+                type="button"
+                value={10}
+                onClick={handleDonateAmountChange}
+              >
+                10€
+              </button>
+              <button
+                className={donateAmount == 50 ? 'btn bg-black py-1' : 'btn bg-oc-pastel-blue py-1'}
+                type="button"
+                value={50}
+                onClick={handleDonateAmountChange}
+              >
+                50€
+              </button>
+            </div>
+            <div className="flex">
+              <input
+                type="text"
+                value={donateMessage}
+                onChange={handleDonateInputChange}
+                className={donateInputError ? 'donate-input-error' : 'donate-input'}
+                placeholder={donateInputPlaceholder}
+              ></input>
+              <button type="submit" className="btn my-2 mr-2 bg-oc-pastel-blue">
+                Confirm
+              </button>
+            </div>
+          </form>
+          <div className={showDonate && !socketConnected ? '' : 'hidden'}>
+            <p className="text-white">Submit a username to donate</p>
           </div>
         </div>
       </div>
@@ -192,6 +304,7 @@ function Chat({ handleWindow, windowed }) {
 Chat.propTypes = {
   handleWindow: PropTypes.func.isRequired,
   windowed: PropTypes.bool.isRequired,
+  setDonationData: PropTypes.func.isRequired,
 };
 
 export default Chat;
