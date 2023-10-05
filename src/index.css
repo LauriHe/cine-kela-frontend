@@ -17,6 +17,35 @@
   display: none;
 }
 
+.banner {
+  height: 30rem;
+  background-image: linear-gradient(to bottom, #ffffff00 60%, #191e39 100%),
+    url("./banner.webp");
+  background-size: cover;
+  background-position: center center;
+}
+
+/* body {
+  min-height: 100vh;
+}
+
+footer {
+  position: sticky;
+  top: 100%;
+} */
+
+@layer components {
+  .newsCard {
+    @apply bg-oc-cold-white border-2 border-oc-pastel-blue;
+  }
+  .newsbtn {
+    @apply bg-oc-rosy-pink p-3 my-3 hover:bg-oc-hover-pink rounded transition-all duration-300;
+  }
+  .footerStyle {
+    @apply bg-oc-hover-pink;
+  }
+}
+
 @layer components {
   .chat-container {
     @apply bg-oc-pastel-blue w-full h-full flex flex-col justify-between relative;
