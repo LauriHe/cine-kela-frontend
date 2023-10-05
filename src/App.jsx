@@ -13,7 +13,6 @@ function App() {
           <Route path="/" element={<Home></Home>} />
           <Route path="/stream" element={<Stream></Stream>} />
           <Route path="/schedule" element={<Schedule></Schedule>} />
-          <Route path="/particle" element={<ParticleTest></ParticleTest>} />
         </Route>
       </Routes>
     </Router>
