@@ -4,7 +4,8 @@
 
 .banner {
   height: 30rem;
-  background-image: linear-gradient(to bottom, #ffffff00 60%, #191e39 100%), url('./banner.webp');
+  background-image: linear-gradient(to bottom, #ffffff00 60%, #191e39 100%),
+    url("./banner.webp");
   background-size: cover;
   background-position: center center;
 }
@@ -23,10 +24,13 @@ footer {
     @apply bg-oc-cold-white border-2 border-oc-pastel-blue;
   }
   .newsbtn {
-    @apply bg-oc-rosy-pink p-3 my-3 hover:bg-oc-hover-pink rounded transition-all duration-300;
+    @apply bg-oc-rosy-pink p-3 my-3 hover:text-white hover:bg-oc-hover-pink rounded transition-all duration-300;
   }
   .footerStyle {
     @apply bg-oc-hover-pink;
+  }
+  .navBarBtn {
+    @apply hover:text-oc-desert-yellow;
   }
 }
 

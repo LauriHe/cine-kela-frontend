@@ -59,7 +59,6 @@ function Home() {
           </div>
         </body>
       </div>
-      <footer className="footerStyle text-center py-8">Cinema Kela</footer>
     </>
   );
 }
