@@ -10,7 +10,7 @@ function VideoPlayer() {
 
   useEffect(() => {
     const options = {
-      autoplay: false,
+      autoplay: true,
       muted: true,
       controls: true,
       responsive: false,
@@ -19,10 +19,12 @@ function VideoPlayer() {
       liveui: true,
       sources: [
         {
-          src: './fuji.mp4',
+          src: 'http://195.148.104.124:1935/jakelu/striiiimi/hieno-striimi/playlist.m3u8',
+          type: 'application/x-mpegURL',
+        },
+        {
+          src: './placeholder.mp4',
           type: 'video/mp4',
-          //src: 'http://195.148.104.124:1935/jakelu/striiiimi/hieno-striimi/playlist.m3u8',
-          //type: 'application/x-mpegURL',
         },
       ],
     };
