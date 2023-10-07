@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import videojs from 'video.js';
 import 'video.js/dist/video-js.css';
+import '../vjs-theme.css';
 
 function VideoPlayer() {
   const videoRef = useRef(null);
@@ -20,7 +21,7 @@ function VideoPlayer() {
         {
           src: './fuji.mp4',
           type: 'video/mp4',
-          //src: 'http://195.148.104.124:1935/jakelu/ulla/playlist.m3u8',
+          //src: 'http://195.148.104.124:1935/jakelu/striiiimi/hieno-striimi/playlist.m3u8',
           //type: 'application/x-mpegURL',
         },
       ],
@@ -44,7 +45,7 @@ function VideoPlayer() {
         });
       }));
 
-      //player.addClass('vjs-theme-city');
+      player.addClass('vjs-theme-city');
 
       // You could update an existing player in the `else` block here
       // on prop change, for example:
