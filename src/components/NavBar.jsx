@@ -1,29 +1,29 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
 function NavBar() {
   const navigate = useNavigate();
   const navigateHome = () => {
-    navigate("/");
+    navigate('/');
   };
 
   const navigateStream = () => {
-    navigate("/Stream");
+    navigate('/stream');
   };
 
   const navigateCalendar = () => {
-    navigate("/Calendar");
+    navigate('/calendar');
   };
 
   const navigateArchive = () => {
-    navigate("/Archive");
+    navigate('/archive');
   };
 
   const navigateTickets = () => {
-    navigate("/Tickets");
+    navigate('/tickets');
   };
 
   const navigateInfo = () => {
-    navigate("/Info");
+    navigate('/info');
   };
 
   return (
