@@ -21,7 +21,7 @@ function Home() {
           {/* div for cards */}
           <div className="flex flex-col ">
             {/* card */}
-            <div className="flex flex-col lg:flex-row newsCard mb-8 rounded">
+            <div className="flex flex-col lg:flex-row newsCard mb-8 rounded-md">
               <img
                 src="/catTest.png"
                 className="flex-grow w-full lg:w-1/2 pr-0 lg:pr-8"
@@ -39,7 +39,7 @@ function Home() {
               </div>
             </div>
             {/* right card */}
-            <div className="flex flex-col-reverse lg:flex-row newsCard mb-8 rounded">
+            <div className="flex flex-col-reverse lg:flex-row newsCard mb-8 rounded-md">
               {/* div for p and btn, do not change */}
               <div className="flex flex-col items-center justify-center flex-grow">
                 <h1 className="text-2xl my-4">Header</h1>
@@ -59,7 +59,6 @@ function Home() {
           </div>
         </body>
       </div>
-      <footer className="footerStyle text-center py-8">Cinema Kela</footer>
     </>
   );
 }
