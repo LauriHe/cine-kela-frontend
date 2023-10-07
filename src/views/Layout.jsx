@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 import NavBar from "../components/NavBar";
-import Footer from "../components/footer";
+import Footer from "../components/Footer";
 
 function Layout() {
   return (
@@ -8,9 +8,12 @@ function Layout() {
       <nav className="h-20 flex-shrink-0">
         <NavBar></NavBar>
       </nav>
-      <main className="bg-oc-space-blue">
+      <main className="bg-oc-space-blue h-fit">
         <Outlet />
       </main>
+      <footer>
+        <Footer></Footer>
+      </footer>
     </div>
   );
 }
