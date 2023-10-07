@@ -3,7 +3,10 @@ function Footer() {
     <div>
       <footer className="footerStyle text-center py-8">
         Cinema Kela
-        <div></div>
+        <div className="flex flex-row">
+          <section>Sites</section>
+          <section>In collaboration</section>
+        </div>
       </footer>
     </div>
   );
