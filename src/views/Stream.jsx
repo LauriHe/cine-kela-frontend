@@ -36,28 +36,30 @@ function Stream() {
       setTimeout(() => {
         setShowDonationContent(false);
         setShowDonationBox(false);
-      }, 5000);
+      }, 7000);
     }
   }, [donation]);
 
   return (
     <div className={windowOpen ? 'flex justify-center h-full overflow-hidden' : 'flex flex-col lg:flex-row items-center h-full'}>
       <div id="video" className={windowOpen ? 'h-full w-full' : 'h-full w-full flex-1 p-4 pb-2 lg:pb-4 lg:pr-2 relative'}>
-        <div className={showDonationBox ? 'donate-box' : 'donate-box h-0'} style={{ transition: 'height 0.3s ease-in-out' }}>
-          <div className={showDonationContent ? 'donate-box-content' : 'hidden'}>
-            <p className="text-white">{donation.username + ' donated ' + donation.donateAmount + '€!'}</p>
-            <p className="text-white">{'Message: ' + donation.donateMessage}</p>
-            <div className="w-full h-7 px-4 rounded-md">
-              <div className="w-full h-full flex items-center relative bg-oc-pastel-blue rounded-md">
-                <div
-                  className="h-full bg-oc-space-blue rounded-md"
-                  style={{ width: (donation.donateProgress / donation.donateGoal) * 100 + '%' }}
-                ></div>
-                <p className="absolute transform -translate-x-1/2 left-1/2 text-white">
-                  {'Progress: ' + donation.donateProgress + ' / ' + donation.donateGoal}
-                </p>
+        <div className={showDonationBox ? 'donate-box' : 'donate-box h-0 p-0'} style={{ transition: 'height 0.3s ease-in-out' }}>
+          <div className="w-full h-full rounded-md bg-oc-space-blue">
+            {showDonationContent && (
+              <div className="donate-box-content">
+                <p className="text-white">{donation.username + ' donated ' + donation.donateAmount + '€!'}</p>
+                <p className="text-white">{'Message: ' + donation.donateMessage}</p>
+                <div className="w-full h-7 px-4 rounded-md">
+                  <div className="w-full h-full flex items-center relative bg-oc-pastel-blue rounded-md">
+                    <div
+                      className="h-full bg-oc-hover-pink rounded-md"
+                      style={{ width: (donation.donateProgress / donation.donateGoal) * 100 + '%' }}
+                    ></div>
+                    <p className="absolute w-full text-center text-white">{'Progress: ' + donation.donateProgress + ' / ' + donation.donateGoal}</p>
+                  </div>
+                </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
         <div className={windowOpen ? 'h-full' : 'rounded-md h-full overflow-hidden'}>
