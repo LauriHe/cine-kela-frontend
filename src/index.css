@@ -81,11 +81,23 @@ footer {
   .donate-toggle-btn {
     @apply bg-[url(./gift.svg)] absolute right-12 -top-6;
   }
-  .donate-box {
-    @apply absolute z-40 w-[50%] h-[8rem] bg-oc-test rounded-md transform top-8 -translate-x-1/2 left-1/2;
+
+  @keyframes moveGradient {
+    50% {
+      background-position: 100% 50%;
+    }
   }
+
+  .donate-box {
+    @apply absolute z-40 w-[90%] s:w-[444px] h-[8rem] p-1 rounded-md transform top-8 -translate-x-1/2 left-1/2;
+    background: linear-gradient(60deg, #5f86f2, #a65ff2, #f25fd0, #f25f61, #f2cb5f, #abf25f, #5ff281, #5ff2f0);
+    background-size: 300% 300%;
+    background-position: 0 50%;
+    animation: moveGradient 4s alternate infinite;
+  }
+
   .donate-box-content {
-    @apply w-full h-full flex flex-col items-center justify-around;
+    @apply w-full h-full flex flex-col items-center justify-around z-50;
   }
 }
 

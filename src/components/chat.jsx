@@ -225,12 +225,12 @@ function Chat({ handleWindow, windowed, setDonationData }) {
             onClick={toggleDonate}
           ></button>
           <div className={showEmoji && socketConnected ? 'flex gap-4 flex-wrap justify-center items-center' : 'hidden'}>
+            <button className="icon-btn emoji-btn bg-[url(./logo.png)]" value={'logo'} onClick={handleEmojiSubmit}></button>
             <button className="icon-btn emoji-btn bg-[url(./capLamme.png)]" value={'capLamme'} onClick={handleEmojiSubmit}></button>
             <button className="icon-btn emoji-btn bg-[url(./capTea.png)]" value={'capTea'} onClick={handleEmojiSubmit}></button>
             <button className="icon-btn emoji-btn bg-[url(./fishBrain.png)]" value={'fishBrain'} onClick={handleEmojiSubmit}></button>
             <button className="icon-btn emoji-btn bg-[url(./moti.png)]" value={'moti'} onClick={handleEmojiSubmit}></button>
             <button className="icon-btn emoji-btn bg-[url(./poop.png)]" value={'poop'} onClick={handleEmojiSubmit}></button>
-            <button className="icon-btn emoji-btn bg-[url(./tataru.png)]" value={'tataru'} onClick={handleEmojiSubmit}></button>
             <button className="icon-btn emoji-btn bg-[url(./catge.png)]" value={'catge'} onClick={handleEmojiSubmit}></button>
             <button className="icon-btn emoji-btn bg-[url(./dogege.png)]" value={'dogege'} onClick={handleEmojiSubmit}></button>
             <button className="icon-btn emoji-btn bg-[url(./pepeNo.png)]" value={'pepeNo'} onClick={handleEmojiSubmit}></button>
