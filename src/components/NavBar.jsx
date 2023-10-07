@@ -5,6 +5,7 @@ function NavBar() {
   const navigateHome = () => {
     navigate("/");
   };
+
   const navigateStream = () => {
     navigate("/Stream");
   };

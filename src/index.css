@@ -10,14 +10,14 @@
   background-position: center center;
 }
 
-/* body {
+body {
   min-height: 100vh;
 }
 
 footer {
   position: sticky;
   top: 100%;
-} */
+}
 
 @layer components {
   .newsCard {
@@ -31,6 +31,9 @@ footer {
   }
   .navBarBtn {
     @apply hover:text-oc-desert-yellow;
+  }
+  .footerSec {
+    @apply p-5;
   }
 }
 
