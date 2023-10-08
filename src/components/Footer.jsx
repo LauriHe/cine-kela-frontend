@@ -30,12 +30,12 @@ function Footer() {
   return (
     <div>
       <footer className="footerStyle text-center py-8 text-black">
-        <h1 className="text-xl">Ciné Kela @ 2023</h1>
+        <h1 className="text-xl font-bold">Ciné Kela @ 2023</h1>
 
         <div className="flex flex-col lg:flex-row justify-center lg:justify-around flex-grow items-center lg:items-start">
           {/* collaboration */}
           <section className="footerSec">
-            <h1 className="text-xl">In collaboration</h1>
+            <h1 className="text-xl font-bold">In collaboration</h1>
             <div className="py-4">
               <img src="frogify2.svg" className="h-auto w-1/5 m-auto"></img>
               <h3>Frogify</h3>
@@ -43,7 +43,7 @@ function Footer() {
           </section>
           {/* Sites */}
           <section className="footerSec flex flex-col">
-            <h1 className="text-xl">Sites</h1>
+            <h1 className="text-xl font-bold">Sites</h1>
             <div className="flex flex-col py-4">
               <btn className="footerLink" onClick={navigateHome}>
                 Home
@@ -67,7 +67,7 @@ function Footer() {
           </section>
           {/* Links */}
           <section className="footerSec">
-            <h1 className="text-xl">Contact Us</h1>
+            <h1 className="text-xl font-bold">Contact Us</h1>
             <ul className="py-4">
               <li>cinekela@metropolia.fi</li>
             </ul>

@@ -2,8 +2,55 @@ function Info() {
   return (
     <>
       <div className="bg-oc-space-blue text-white">
-        <body className="w-10/12 m-auto">
-          <section className="bg-oc-pastel-blue flex flex-col items-center py-8 my-8">
+        <body className="w-full lg:w-10/12 m-auto">
+          <section className="bg-oc-pastel-blue flex flex-col items-center py-8 my-8 roundedn-none lg:rounded-md">
+            <h1 className="text-3xl py-4">FAQ'S</h1>
+            {/* Div for q's */}
+            <div className="px-8">
+              {/* Question 1 */}
+              <div>
+                <h1 className="text-xl font-bold py-4">Question 1</h1>
+                <div>
+                  <p className="text-base">
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                    Laborum, quam eaque quidem totam molestiae, odio eum qui
+                    sunt culpa laudantium provident dolorem? Modi quos maxime id
+                    veniam aut iste beatae.
+                  </p>
+                </div>
+              </div>
+              <hr className="my-8"></hr>
+              <div>
+                <h1 className="text-xl font-bold py-4">Question 2</h1>
+                <div>
+                  <p className="text-base">
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                    Laborum, quam eaque quidem totam molestiae, odio eum qui
+                    sunt culpa laudantium provident dolorem? Modi quos maxime id
+                    veniam aut iste beatae.
+                  </p>
+                </div>
+              </div>
+              <hr className="my-8"></hr>
+              <div>
+                <h1 className="text-xl font-bold py-4">Question 3</h1>
+                <div>
+                  <p className="text-base">
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                    Laborum, quam eaque quidem totam molestiae, odio eum qui
+                    sunt culpa laudantium provident dolorem? Modi quos maxime id
+                    veniam aut iste beatae.
+                  </p>
+                </div>
+              </div>
+              <hr className="my-8"></hr>
+              <p>
+                Couldn't find what you were looking for? Contact us through the
+                form at the bottom of the page.
+              </p>
+            </div>
+          </section>
+          <section className="bg-oc-pastel-blue flex flex-col items-center py-8 my-8 roundedn-none lg:rounded-md">
             <h1 className="text-3xl mb-4">Contact us</h1>
             <form className="w-full max-w-lg">
               {/* First Row */}
@@ -16,7 +63,7 @@ function Info() {
                     First Name
                   </label>
                   <input
-                    className="appearance-none block w-full bg-gray-200 text-black rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                    className="shadow-lg appearance-none block w-full bg-gray-200 text-black rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                     id="grid-first-name"
                     type="text"
                     placeholder="Jane"
@@ -31,7 +78,7 @@ function Info() {
                     Last Name
                   </label>
                   <input
-                    className="appearance-none block w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                    className="shadow-lg appearance-none block w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                     id="grid-last-name"
                     type="text"
                     placeholder="Doe"
@@ -48,7 +95,7 @@ function Info() {
                     E-mail
                   </label>
                   <input
-                    className="appearance-none block w-full bg-gray-200 text-black rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                    className="shadow-lg appearance-none block w-full bg-gray-200 text-black rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                     id="grid-first-name"
                     type="text"
                     placeholder="ex@example.com"
@@ -63,7 +110,7 @@ function Info() {
                     Phone number
                   </label>
                   <input
-                    className="appearance-none block w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                    className="shadow-lg appearance-none block w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                     id="grid-last-name"
                     type="text"
                     placeholder="+358 12345678"
@@ -95,7 +142,7 @@ function Info() {
                 <h2 className="block tracking-wide text-white text-xl mb-2">
                   Summary of your inquiry
                 </h2>
-                <div className="textareacontainer">
+                <div className="textareacontainer shadow-lg">
                   <textarea className="appearance-none block w-full bg-gray-200 text-black rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"></textarea>
                 </div>
               </div>
