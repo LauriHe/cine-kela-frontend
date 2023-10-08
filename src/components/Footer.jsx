@@ -8,23 +8,23 @@ function Footer() {
   };
 
   const navigateStream = () => {
-    navigate("/Stream");
+    navigate("/stream");
   };
 
   const navigateCalendar = () => {
-    navigate("/Calendar");
+    navigate("/calendar");
   };
 
   const navigateArchive = () => {
-    navigate("/Archive");
+    navigate("/archive");
   };
 
   const navigateTickets = () => {
-    navigate("/Tickets");
+    navigate("/tickets");
   };
 
   const navigateInfo = () => {
-    navigate("/Info");
+    navigate("/info");
   };
 
   return (
@@ -32,7 +32,7 @@ function Footer() {
       <footer className="footerStyle text-center py-8 text-black">
         <h1 className="text-xl">Ciné Kela @ 2023</h1>
 
-        <div className="flex flex-row justify-around flex-grow items-start">
+        <div className="flex flex-col lg:flex-row justify-center lg:justify-around flex-grow items-center lg:items-start">
           {/* collaboration */}
           <section className="footerSec">
             <h1 className="text-xl">In collaboration</h1>
