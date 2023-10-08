@@ -7,7 +7,7 @@ function Schedule() {
             Cinéma Kéla
           </h1>
           <h1 className=" text-oc-cold-white font-bold text-3xl text-center">
-            10.15 - 10.19
+            15.10 - 19.10
           </h1>
         </div>
         <div className="flex xs:flex-col sm:flex-col lg:flex-row xs:w-screen sm:w-screen xs:h-screen sm:h-screen lg:h-4/6 lg:w-5/6 bg-oc-space-blue rounded-md">
@@ -116,7 +116,7 @@ function Schedule() {
               Friday
             </h1>
             <div className=" flex flex-col justify-center h-full items-center w-full bg-oc-cold-white rounded-md hover:rounded-md">
-              <video src="./public/fuji.mp4" className=" "></video>
+              <video src="/fuji.mp4" className=" "></video>
               <div className=" w-full flex flex-col">
                 <h2 className=" text-oc-cold-white text-xl  font-semibold py-2 bg-oc-pastel-blue w-full text-center">
                   The Shape of Water
