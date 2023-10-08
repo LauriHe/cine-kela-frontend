@@ -1,58 +1,125 @@
-import { useNavigate } from 'react-router-dom';
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function NavBar() {
+  const [burger, setBurger] = useState(false);
+
+  const toggleBurger = () => {
+    setBurger(!burger);
+    const body = document.querySelector("body");
+    if (burger) {
+      body.style.overflow = "visible";
+    } else {
+      body.style.overflow = "hidden";
+    }
+  };
+
   const navigate = useNavigate();
+
   const navigateHome = () => {
-    navigate('/');
+    if (burger) {
+      toggleBurger();
+    }
+    navigate("/");
   };
 
   const navigateStream = () => {
-    navigate('/stream');
+    if (burger) {
+      toggleBurger();
+    }
+    navigate("/stream");
   };
 
   const navigateCalendar = () => {
-    navigate('/calendar');
+    if (burger) {
+      toggleBurger();
+    }
+    navigate("/calendar");
   };
 
   const navigateArchive = () => {
-    navigate('/archive');
+    if (burger) {
+      toggleBurger();
+    }
+    navigate("/archive");
   };
 
   const navigateTickets = () => {
-    navigate('/tickets');
+    if (burger) {
+      toggleBurger();
+    }
+    navigate("/tickets");
   };
 
   const navigateInfo = () => {
-    navigate('/info');
+    if (burger) {
+      toggleBurger();
+    }
+    navigate("/info");
   };
 
   return (
     <div className="w-full h-full bg-oc-pastel-blue flex justify-between">
-      <div id="logo" className="h-full flex justify-center items-center gap-2 p-2 cursor-pointer" onClick={navigateHome}>
+      <div
+        id="logo"
+        className="h-full flex justify-center items-center gap-2 p-2 cursor-pointer"
+        onClick={navigateHome}
+      >
         <img src="./logo.png" className="h-16"></img>
-        <div className="w-fit text-[2rem] font-bold text-white font-IM-Fell-English-SC">Ciné Kela</div>
+        <div className="w-fit text-[2rem] font-bold text-white font-IM-Fell-English-SC">
+          Ciné Kela
+        </div>
       </div>
-      <div className="hidden h-full md:flex items-center gap-10 pr-4 text-white">
-        <button className="h-fit navBarBtn" onClick={navigateHome}>
-          Home
-        </button>
-        <button className="h-fit navBarBtn" onClick={navigateStream}>
-          Stream
-        </button>
-        <button className="h-fit navBarBtn" onClick={navigateCalendar}>
-          Calendar
-        </button>
+      {/* aaaaa */}
 
-        <button className="h-fit navBarBtn" onClick={navigateArchive}>
-          Archive
-        </button>
-        <button className="h-fit navBarBtn" onClick={navigateTickets}>
-          Tickets
-        </button>
-        <button className="h-fit navBarBtn" onClick={navigateInfo}>
-          Info
-        </button>
+      {/* to burger */}
+      <div className="flex items-center">
+        <div className="hidden h-full md:flex items-center gap-10 pr-4 text-white">
+          <button className="h-fit navBarBtn" onClick={navigateHome}>
+            Home
+          </button>
+          <button className="h-fit navBarBtn" onClick={navigateStream}>
+            Stream
+          </button>
+          <button className="h-fit navBarBtn" onClick={navigateCalendar}>
+            Calendar
+          </button>
+          <button className="h-fit navBarBtn" onClick={navigateArchive}>
+            Archive
+          </button>
+          <button className="h-fit navBarBtn" onClick={navigateTickets}>
+            Tickets
+          </button>
+          <button className="h-fit navBarBtn" onClick={navigateInfo}>
+            Info
+          </button>
+        </div>
+        <button className="burger" onClick={toggleBurger}></button>
       </div>
+
+      {burger && (
+        <div className="flex flex-col bg-oc-space-blue/[.95] h-screen w-screen absolute z-[100] py-8">
+          <button className="burgerClose" onClick={toggleBurger}></button>
+          <button className="h-fit burBarBtn" onClick={navigateHome}>
+            Home
+          </button>
+          <button className="h-fit burBarBtn" onClick={navigateStream}>
+            Stream
+          </button>
+          <button className="h-fit burBarBtn" onClick={navigateCalendar}>
+            Calendar
+          </button>
+          <button className="h-fit burBarBtn" onClick={navigateArchive}>
+            Archive
+          </button>
+          <button className="h-fit burBarBtn" onClick={navigateTickets}>
+            Tickets
+          </button>
+          <button className="h-fit burBarBtn" onClick={navigateInfo}>
+            Info
+          </button>
+        </div>
+      )}
     </div>
   );
 }
