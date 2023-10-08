@@ -66,7 +66,7 @@ function Stream() {
           <VideoPlayer></VideoPlayer>
         </div>
       </div>
-      <div id="chat" className={windowOpen ? '' : 'w-full h-[65%] lg:flex-none lg:w-[20rem] lg:h-full p-4 pt-2 lg:pt-4 lg:pl-2'}>
+      <div id="chat" className={windowOpen ? '' : 'w-full h-[65%] lg:flex-none lg:w-[25rem] lg:h-full p-4 pt-2 lg:pt-4 lg:pl-2'}>
         {windowOpen ? (
           <NewWindow>
             <Chat handleWindow={handleWindowButton} windowed={windowOpen} setDonationData={setDonation}></Chat>
