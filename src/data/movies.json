@@ -2,13 +2,13 @@
   "1": {
     "title": "Democompo",
     "source": "./movies/Democompo.mp4",
-    "premiereDate": "8.10.2023",
+    "premiereDate": "12.10.2023",
     "premiereTime": "12.00.00",
     "runningTime": "00.19.48",
     "expireTime": "13.00.00"
   },
   "2": {
-    "title": "Mikko_EVTEKtoAlaska",
+    "title": "Mikko EVTEKtoAlaska",
     "source": "./movies/Mikko_EVTEKtoAlaska.mp4",
     "premiereDate": "13.10.2023",
     "premiereTime": "17.00.00",
@@ -24,7 +24,7 @@
     "expireTime": "16.00.00"
   },
   "4": {
-    "title": "Museo_olohuoneena",
+    "title": "Museo olohuoneena",
     "source": "./movies/Museo_olohuoneena.mp4",
     "premiereDate": "15.10.2023",
     "premiereTime": "19.00.00",
@@ -32,7 +32,7 @@
     "expireTime": "20.00.00"
   },
   "5": {
-    "title": "Opiskelijaelämää_2009",
+    "title": "Opiskelijaelämää 2009",
     "source": "./movies/Opiskelijaelämää_2009.mp4",
     "premiereDate": "16.10.2023",
     "premiereTime": "20.00.00",

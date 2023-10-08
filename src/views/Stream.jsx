@@ -11,6 +11,8 @@ function Stream() {
   const [showDonationContent, setShowDonationContent] = useState(false);
   const [videoSource, setVideoSource] = useState(null);
   const [videoLoop, setVideoLoop] = useState(true);
+  const [nextMovie, setNextMovie] = useState(null);
+  const [showNextMovie, setShowNextMovie] = useState(true);
   let moviePlaying = false;
 
   const handleWindowButton = () => {
@@ -59,6 +61,7 @@ function Stream() {
         matchingTime = true;
         if (!moviePlaying) {
           moviePlaying = true;
+          setShowNextMovie(false);
           setVideoLoop(false);
           setVideoSource({
             src: './movies/countdown.mp4',
@@ -76,15 +79,43 @@ function Stream() {
 
     if (!matchingTime && moviePlaying) {
       moviePlaying = false;
+      setShowNextMovie(true);
       setVideoLoop(true);
       setVideoSource(null);
     }
   };
 
+  const updateNextMovieIfo = () => {
+    const currentDate = new Date().toLocaleDateString('fi-FI');
+    const currentTime = new Date().toLocaleTimeString('fi-FI');
+    const movieList = [];
+
+    Object.entries(movies).forEach((entry) => {
+      movieList.push(entry[1]);
+    });
+
+    for (let i = 0; i < movieList.length; i++) {
+      const movie = movieList[i];
+      const premiereDate = movie.premiereDate;
+      const premiereTime = movie.premiereTime;
+      const expireTime = movie.expireTime;
+
+      if (currentDate == premiereDate && currentTime <= premiereTime) {
+        setNextMovie(movie);
+      } else if (currentDate == premiereDate && currentTime >= expireTime) {
+        setNextMovie(movieList[i + 1]);
+      } else if (currentDate == premiereDate && i == movieList.length - 1) {
+        setNextMovie(null);
+      }
+    }
+  };
+
   useEffect(() => {
     checkMoviePlaying();
+    updateNextMovieIfo();
     setInterval(() => {
       checkMoviePlaying();
+      updateNextMovieIfo();
     }, 1000);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -111,6 +142,14 @@ function Stream() {
             )}
           </div>
         </div>
+        {nextMovie && showNextMovie && (
+          <div className="w-fit h-fit absolute top-[2rem] transform translate-x-1/2 right-1/2 z-10 py-4 px-10 bg-oc-space-blue rounded-md flex flex-col gap-2 items-center">
+            <div className="text-white text-[0.6rem] sm:text-[1.5vw] xl:text-[1.2rem] text-center">Next Movie: {nextMovie.title}</div>
+            <div className="text-white text-[0.6rem] sm:text-[1.5vw] xl:text-[1.2rem] text-center">
+              {'Time: ' + nextMovie.premiereDate.substring(0, 5) + ' at ' + nextMovie.premiereTime.substring(0, 5)}
+            </div>
+          </div>
+        )}
         <div className={windowOpen ? 'h-full' : 'rounded-md h-full overflow-hidden'}>
           <VideoPlayer source={videoSource} loop={videoLoop}></VideoPlayer>
         </div>
