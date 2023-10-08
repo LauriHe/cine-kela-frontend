@@ -2,12 +2,16 @@ import { useEffect, useState } from 'react';
 import VideoPlayer from '../components/VideoPlayer';
 import NewWindow from 'react-new-window';
 import Chat from '../components/chat';
+import movies from '../data/movies.json';
 
 function Stream() {
   const [windowOpen, setWindowOpen] = useState(false);
   const [donation, setDonation] = useState({});
   const [showDonationBox, setShowDonationBox] = useState(false);
   const [showDonationContent, setShowDonationContent] = useState(false);
+  const [videoSource, setVideoSource] = useState(null);
+  const [videoLoop, setVideoLoop] = useState(true);
+  let moviePlaying = false;
 
   const handleWindowButton = () => {
     setWindowOpen(!windowOpen);
@@ -40,6 +44,51 @@ function Stream() {
     }
   }, [donation]);
 
+  const checkMoviePlaying = () => {
+    const currentDate = new Date().toLocaleDateString('fi-FI');
+    const currentTime = new Date().toLocaleTimeString('fi-FI');
+    let matchingTime = false;
+
+    Object.entries(movies).forEach((entry) => {
+      const movie = entry[1];
+      const premiereDate = movie.premiereDate;
+      const premiereTime = movie.premiereTime;
+      const expireTime = movie.expireTime;
+
+      if (currentDate === premiereDate && currentTime >= premiereTime && currentTime <= expireTime) {
+        matchingTime = true;
+        if (!moviePlaying) {
+          moviePlaying = true;
+          setVideoLoop(false);
+          setVideoSource({
+            src: './movies/countdown.mp4',
+            type: 'video/mp4',
+          });
+          setTimeout(() => {
+            setVideoSource({
+              src: movie.source,
+              type: 'video/mp4',
+            });
+          }, 13000);
+        }
+      }
+    });
+
+    if (!matchingTime && moviePlaying) {
+      moviePlaying = false;
+      setVideoLoop(true);
+      setVideoSource(null);
+    }
+  };
+
+  useEffect(() => {
+    checkMoviePlaying();
+    setInterval(() => {
+      checkMoviePlaying();
+    }, 1000);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <div className={windowOpen ? 'flex justify-center h-full overflow-hidden' : 'flex flex-col lg:flex-row items-center h-full'}>
       <div id="video" className={windowOpen ? 'h-full w-full' : 'h-full w-full flex-1 p-4 pb-2 lg:pb-4 lg:pr-2 relative'}>
@@ -63,7 +112,7 @@ function Stream() {
           </div>
         </div>
         <div className={windowOpen ? 'h-full' : 'rounded-md h-full overflow-hidden'}>
-          <VideoPlayer></VideoPlayer>
+          <VideoPlayer source={videoSource} loop={videoLoop}></VideoPlayer>
         </div>
       </div>
       <div id="chat" className={windowOpen ? '' : 'w-full h-[65%] lg:flex-none lg:w-[25rem] lg:h-full p-4 pt-2 lg:pt-4 lg:pl-2'}>
