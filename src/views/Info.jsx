@@ -29,7 +29,7 @@ function Info() {
     }
   };
 
-  const closeForm = (event) => {
+  const closeForm = () => {
     sendForm;
     window.location.reload();
   };
