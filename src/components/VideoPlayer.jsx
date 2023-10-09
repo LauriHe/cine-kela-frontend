@@ -4,7 +4,7 @@ import videojs from 'video.js';
 import 'video.js/dist/video-js.css';
 import '../vjs-theme.css';
 
-function VideoPlayer() {
+function VideoPlayer({ source, loop }) {
   const videoRef = useRef(null);
   const playerRef = useRef(null);
 
@@ -56,8 +56,12 @@ function VideoPlayer() {
 
       player.autoplay(options.autoplay);
       player.src(options.sources);
+      player.loop(loop);
+      if (source) {
+        player.src(source);
+      }
     }
-  }, [videoRef]);
+  }, [videoRef, source, loop]);
 
   // Dispose the Video.js player when the functional component unmounts
   useEffect(() => {
@@ -79,7 +83,8 @@ function VideoPlayer() {
 }
 
 VideoPlayer.propTypes = {
-  options: PropTypes.object,
+  source: PropTypes.object,
+  loop: PropTypes.bool,
 };
 
 export default VideoPlayer;

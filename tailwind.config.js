@@ -2,6 +2,11 @@
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
+    fontFamily: {
+      'IM-Fell-English-SC': ['"IM Fell English SC"', 'sans-serif'],
+      'Cantarell-Regular': ['"Cantarell-Regular"', 'sans-serif'],
+      'TenorSans-Regular': ['"TenorSans-Regular"', 'sans-serif'],
+    },
     extend: {
       colors: {
         "oc-space-blue": "#191e39",

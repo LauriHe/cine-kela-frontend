@@ -1,3 +1,18 @@
+@font-face {
+  font-family: 'IM Fell English SC';
+  src: url(./IMFellEnglishSC-Regular.ttf);
+}
+
+@font-face {
+  font-family: 'Cantarell-Regular';
+  src: url(./Cantarell-Regular.ttf);
+}
+
+@font-face {
+  font-family: 'TenorSans-Regular';
+  src: url(./TenorSans-Regular.ttf);
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -39,14 +54,14 @@
 }
 .banner {
   height: 30rem;
-  background-image: linear-gradient(to bottom, #ffffff00 60%, #191e39 100%),
-    url("./banner.webp");
+  background-image: linear-gradient(to bottom, #ffffff00 60%, #191e39 100%), url('./banner.webp');
   background-size: cover;
   background-position: center center;
 }
 
 body {
   min-height: 100vh;
+  font-family: 'tenorSans-Regular', sans-serif;
 }
 
 footer {
@@ -65,7 +80,7 @@ footer {
     @apply bg-oc-hover-pink;
   }
   .navBarBtn {
-    @apply hover:text-oc-desert-yellow;
+    @apply hover:text-oc-desert-yellow font-IM-Fell-English-SC;
   }
   .footerSec {
     @apply p-5;
