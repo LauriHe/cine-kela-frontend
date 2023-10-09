@@ -1,19 +1,58 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import VideoPlayer from '../components/VideoPlayer';
 import NewWindow from 'react-new-window';
 import Chat from '../components/chat';
 import movies from '../data/movies.json';
+import { confetti } from 'tsparticles-confetti';
 
 function Stream() {
   const [windowOpen, setWindowOpen] = useState(false);
-  const [donation, setDonation] = useState({});
   const [showDonationBox, setShowDonationBox] = useState(false);
   const [showDonationContent, setShowDonationContent] = useState(false);
   const [videoSource, setVideoSource] = useState(null);
   const [videoLoop, setVideoLoop] = useState(true);
   const [nextMovie, setNextMovie] = useState(null);
   const [showNextMovie, setShowNextMovie] = useState(true);
+
+  const [donation, setDonation] = useState({});
+  const [currentDonation, setCurrentDonation] = useState({});
+  const donations = useRef([]);
+
   let moviePlaying = false;
+
+  const renderConfetti = async () => {
+    const duration = 0.5 * 1000,
+      animationEnd = Date.now() + duration,
+      defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+
+    function randomInRange(min, max) {
+      return Math.random() * (max - min) + min;
+    }
+
+    const interval = setInterval(function () {
+      const timeLeft = animationEnd - Date.now();
+
+      if (timeLeft <= 0) {
+        return clearInterval(interval);
+      }
+
+      const particleCount = 50 * (timeLeft / duration);
+
+      // since particles fall down, start a bit higher than random
+      confetti(
+        Object.assign({}, defaults, {
+          particleCount,
+          origin: { x: randomInRange(0.1, 0.5), y: Math.random() - 0.5 },
+        })
+      );
+      confetti(
+        Object.assign({}, defaults, {
+          particleCount,
+          origin: { x: randomInRange(0.5, 0.9), y: Math.random() - 0.5 },
+        })
+      );
+    }, 50);
+  };
 
   const handleWindowButton = () => {
     setWindowOpen(!windowOpen);
@@ -33,16 +72,36 @@ function Stream() {
     }
   }, [windowOpen]);
 
+  const renderDonation = () => {
+    const donation = donations.current[0];
+    if (!donation) return;
+    setCurrentDonation(donation);
+    setShowDonationBox(true);
+
+    setTimeout(() => {
+      setShowDonationContent(true);
+      if (donation.donateProgress == donation.donateGoal) {
+        renderConfetti();
+      }
+    }, 300);
+
+    setTimeout(() => {
+      setShowDonationContent(false);
+      setShowDonationBox(false);
+    }, 3000);
+
+    setTimeout(() => {
+      donations.current.shift();
+      renderDonation();
+    }, 4000);
+  };
+
   useEffect(() => {
     if (donation.username) {
-      setShowDonationBox(true);
-      setTimeout(() => {
-        setShowDonationContent(true);
-      }, 300);
-      setTimeout(() => {
-        setShowDonationContent(false);
-        setShowDonationBox(false);
-      }, 7000);
+      donations.current.push(donation);
+      if (donations.current.length == 1) {
+        renderDonation();
+      }
     }
   }, [donation]);
 
@@ -127,15 +186,17 @@ function Stream() {
           <div className="w-full h-full rounded-md bg-oc-space-blue">
             {showDonationContent && (
               <div className="donate-box-content">
-                <p className="text-white">{donation.username + ' donated ' + donation.donateAmount + '€!'}</p>
-                <p className="text-white">{'Message: ' + donation.donateMessage}</p>
+                <p className="text-white">{currentDonation?.username + ' donated ' + currentDonation?.donateAmount + '€!'}</p>
+                <p className="text-white">{'Message: ' + currentDonation?.donateMessage}</p>
                 <div className="w-full h-7 px-4 rounded-md">
                   <div className="w-full h-full flex items-center relative bg-oc-pastel-blue rounded-md">
                     <div
                       className="h-full bg-oc-hover-pink rounded-md"
-                      style={{ width: (donation.donateProgress / donation.donateGoal) * 100 + '%' }}
+                      style={{ width: (currentDonation?.donateProgress / currentDonation?.donateGoal) * 100 + '%' }}
                     ></div>
-                    <p className="absolute w-full text-center text-white">{'Progress: ' + donation.donateProgress + ' / ' + donation.donateGoal}</p>
+                    <p className="absolute w-full text-center text-white">
+                      {'Progress: ' + currentDonation?.donateProgress + ' / ' + currentDonation?.donateGoal}
+                    </p>
                   </div>
                 </div>
               </div>

@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { socket } from '../utils/socket';
 import ChatMessage from './ChatMessage';
-import { confetti } from 'tsparticles-confetti';
 
 function Chat({ handleWindow, windowed, setDonationData }) {
   const [input, setInput] = useState('');
@@ -100,40 +99,6 @@ function Chat({ handleWindow, windowed, setDonationData }) {
     }
   };
 
-  const renderConfetti = async () => {
-    const duration = 0.5 * 1000,
-      animationEnd = Date.now() + duration,
-      defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
-
-    function randomInRange(min, max) {
-      return Math.random() * (max - min) + min;
-    }
-
-    const interval = setInterval(function () {
-      const timeLeft = animationEnd - Date.now();
-
-      if (timeLeft <= 0) {
-        return clearInterval(interval);
-      }
-
-      const particleCount = 50 * (timeLeft / duration);
-
-      // since particles fall down, start a bit higher than random
-      confetti(
-        Object.assign({}, defaults, {
-          particleCount,
-          origin: { x: randomInRange(0.1, 0.5), y: Math.random() - 0.5 },
-        })
-      );
-      confetti(
-        Object.assign({}, defaults, {
-          particleCount,
-          origin: { x: randomInRange(0.5, 0.9), y: Math.random() - 0.5 },
-        })
-      );
-    }, 50);
-  };
-
   useEffect(() => {
     if (socketConnected) {
       socket.emit('chat messages', '');
@@ -146,9 +111,6 @@ function Chat({ handleWindow, windowed, setDonationData }) {
       setDonateInputPlaceholder('Write a message');
       socket.on('donations', (donation) => {
         setDonationData(donation);
-      });
-      socket.on('donationGoalReached', () => {
-        renderConfetti();
       });
     } else if (socket.connected) {
       setInputPlaceholder('Write a message');
