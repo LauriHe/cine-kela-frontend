@@ -50,18 +50,18 @@ function Schedule() {
   return (
     <Fragment>
       <div>
-        <div className=" flex flex-col h-screen bg-oc-space-blue items-center">
+        <div className=" flex flex-col lg:h-screen bg-oc-space-blue items-center">
           <div className=" flex flex-col h-1/6 justify-center xs:my-4 sm:my-4">
-            <h1 className=" text-oc-cold-white font-bold text-5xl flex justify-center text-center">
-              Ciné Kéla
+            <h1 className=" text-oc-cold-white font-bold text-5xl flex justify-center text-center font-IM-Fell-English-SC">
+              Ciné Kela
             </h1>
             <h1 className=" text-oc-cold-white font-bold text-3xl text-center">
               11.10.2023 - {movies[5].premiereDate}
             </h1>
           </div>
-          <div className="flex xs:flex-col sm:flex-col lg:flex-row xs:w-screen sm:w-screen xs:h-screen sm:h-screen lg:h-4/6 lg:w-5/6 bg-oc-space-blue rounded-md">
+          <div className="flex xs:flex-col sm:flex-col md:flex-col lg:flex-row xs:w-screen sm:w-screen xs:h-full sm:h-full lg:h-4/6 lg:w-5/6 bg-oc-space-blue rounded-md">
             <div className=" card flex flex-col flex-1 grow shrink  hover:grow-[10] h-full items-center rounded-md lg:px-2 md:px-2 bg-oc-space-blue xs:py-2 sm:py-2">
-              <h1 className=" day text-3xl font-semibold bg-oc-pastel-blue text-oc-cold-white w-full rounded-t-md text-center py-2">
+              <h1 className=" day text-3xl font-semibold font-IM-Fell-English-SC bg-oc-pastel-blue text-oc-cold-white w-full rounded-t-md text-center py-2">
                 Wednesday
               </h1>
               <div className=" flex flex-col justify-center h-full items-center w-full bg-oc-cold-white rounded-b-md hover:rounded-md cardImg">
@@ -90,7 +90,7 @@ function Schedule() {
               onMouseEnter={playVid}
               onMouseLeave={stopVid}
             >
-              <h1 className=" day px-4 text-3xl font-semibold bg-oc-pastel-blue text-oc-cold-white w-full rounded-t-md text-center py-2">
+              <h1 className=" day px-4 text-3xl font-semibold font-IM-Fell-English-SC bg-oc-pastel-blue text-oc-cold-white w-full rounded-t-md text-center py-2">
                 Thursday
               </h1>
               <div className=" flex flex-col justify-center h-full items-center w-full bg-oc-cold-white rounded-b-md hover:rounded-md cardImg2">
@@ -132,7 +132,7 @@ function Schedule() {
               onMouseEnter={playVid2}
               onMouseLeave={stopVid2}
             >
-              <h1 className=" day px-4 text-3xl font-semibold bg-oc-pastel-blue text-oc-cold-white w-full rounded-t-md text-center py-2">
+              <h1 className=" day px-4 text-3xl font-semibold font-IM-Fell-English-SC bg-oc-pastel-blue text-oc-cold-white w-full rounded-t-md text-center py-2">
                 Friday
               </h1>
               <div className=" flex flex-col justify-center h-full items-center w-full bg-oc-cold-white rounded-b-md cardImg3">
@@ -170,11 +170,11 @@ function Schedule() {
               </div>
             </div>
             <div
-              className=" card flex flex-col flex-1 grow shrink  hover:grow-[10] h-full items-center rounded-md lg:px-2 md:px-2 bg-oc-space-blue xs:py-2 sm:py-2"
+              className=" card flex flex-col flex-1 grow shrink hover:grow-[10] h-full items-center rounded-md lg:px-2 md:px-2 bg-oc-space-blue xs:py-2 sm:py-2"
               onMouseEnter={playVid3}
               onMouseLeave={stopVid3}
             >
-              <h1 className=" day px-4 text-3xl font-semibold bg-oc-pastel-blue text-oc-cold-white w-full rounded-t-md text-center py-2">
+              <h1 className=" day px-4 text-3xl font-semibold font-IM-Fell-English-SC bg-oc-pastel-blue text-oc-cold-white w-full rounded-t-md text-center py-2">
                 Saturday
               </h1>
               <div className=" flex flex-col justify-center h-full items-center w-full bg-oc-cold-white rounded-b-md hover:rounded-md cardImg4">
@@ -185,7 +185,7 @@ function Schedule() {
                   muted
                 ></video>
                 <div className=" w-full flex flex-col">
-                  <h2 className=" text-oc-cold-white text-xl  font-semibold py-2 bg-oc-pastel-blue w-full text-center">
+                  <h2 className=" text-oc-cold-white text-xl font-semibold py-2 bg-oc-pastel-blue w-full text-center">
                     Morning After
                   </h2>
                   <h2 className=" text-oc-cold-white font-semibold py-2 bg-oc-pastel-blue w-full text-center">
@@ -216,7 +216,7 @@ function Schedule() {
               onMouseEnter={playVid4}
               onMouseLeave={stopVid4}
             >
-              <h1 className=" day text-3xl font-semibold bg-oc-pastel-blue text-oc-cold-white w-full rounded-t-md text-center py-2">
+              <h1 className=" day text-3xl font-semibold font-IM-Fell-English-SC bg-oc-pastel-blue text-oc-cold-white w-full rounded-t-md text-center py-2">
                 Sunday
               </h1>
               <div className=" flex flex-col justify-center h-full items-center w-full bg-oc-cold-white rounded-b-md hover:rounded-md cardImg5">
@@ -258,7 +258,7 @@ function Schedule() {
               onMouseEnter={playVid5}
               onMouseLeave={stopVid5}
             >
-              <h1 className=" day text-3xl font-semibold bg-oc-pastel-blue text-oc-cold-white w-full rounded-t-md text-center py-2">
+              <h1 className=" day text-3xl font-semibold font-IM-Fell-English-SC bg-oc-pastel-blue text-oc-cold-white w-full rounded-t-md text-center py-2">
                 Monday
               </h1>
               <div className=" flex flex-col justify-center h-full items-center w-full bg-oc-cold-white rounded-b-md hover:rounded-md cardImg6">
@@ -269,7 +269,7 @@ function Schedule() {
                   muted
                 ></video>
                 <div className=" w-full flex flex-col">
-                  <h2 className=" text-oc-cold-white text-xl  font-semibold py-2 bg-oc-pastel-blue w-full text-center">
+                  <h2 className=" text-oc-cold-white text-xl font-semibold py-2 bg-oc-pastel-blue w-full text-center">
                     Opiskelijaelamaa 2009
                   </h2>
                   <h2 className=" text-oc-cold-white font-semibold py-2 bg-oc-pastel-blue w-full text-center">
