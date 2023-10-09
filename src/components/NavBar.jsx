@@ -30,11 +30,11 @@ function NavBar() {
     navigate("/stream");
   };
 
-  const navigateCalendar = () => {
+  const navigateSchedule = () => {
     if (burger) {
       toggleBurger();
     }
-    navigate("/calendar");
+    navigate("/schedule");
   };
 
   const navigateArchive = () => {
@@ -79,8 +79,8 @@ function NavBar() {
           <button className="h-fit navBarBtn" onClick={navigateStream}>
             Stream
           </button>
-          <button className="h-fit navBarBtn" onClick={navigateCalendar}>
-            Calendar
+          <button className="h-fit navBarBtn" onClick={navigateSchedule}>
+            Schedule
           </button>
           <button className="h-fit navBarBtn" onClick={navigateArchive}>
             Archive
@@ -104,8 +104,8 @@ function NavBar() {
           <button className="h-fit burBarBtn" onClick={navigateStream}>
             Stream
           </button>
-          <button className="h-fit burBarBtn" onClick={navigateCalendar}>
-            Calendar
+          <button className="h-fit burBarBtn" onClick={navigateSchedule}>
+            Schedule
           </button>
           <button className="h-fit burBarBtn" onClick={navigateArchive}>
             Archive
