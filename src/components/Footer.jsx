@@ -11,8 +11,8 @@ function Footer() {
     navigate("/stream");
   };
 
-  const navigateCalendar = () => {
-    navigate("/calendar");
+  const navigateSchedule = () => {
+    navigate("/schedule");
   };
 
   const navigateArchive = () => {
@@ -51,8 +51,8 @@ function Footer() {
               <btn className="footerLink" onClick={navigateStream}>
                 Stream
               </btn>
-              <btn className="footerLink" onClick={navigateCalendar}>
-                Calendar
+              <btn className="footerLink" onClick={navigateSchedule}>
+                Schedule
               </btn>
               <btn className="footerLink" onClick={navigateArchive}>
                 Archive
