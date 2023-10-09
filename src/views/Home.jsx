@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { InstagramEmbed } from "react-social-media-embed";
 
 function Home() {
   useEffect(() => {
@@ -23,7 +24,11 @@ function Home() {
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod
               voluptate corrupti laboriosam repudiandae et. Asperiores odit
               fugit voluptatem, tenetur numquam quo voluptatum. Unde quia beatae
-              laborum eius autem corporis exercitationem.
+              laborum eius autem corporis exercitationem. Lorem ipsum dolor sit,
+              amet consectetur adipisicing elit. Sint tempore praesentium
+              repudiandae provident, accusantium aperiam suscipit eius eligendi
+              culpa optio ratione perspiciatis dolorem dolor illum impedit
+              sequi. Officiis, quisquam quae.
             </p>
           </article>
           {/* cards / news */}
@@ -66,13 +71,36 @@ function Home() {
               ></img>
             </div>
           </div>
-          <div className="text-white h-screen w-96 overflow-scroll mb-8">
-            <a
-              className="twitter-timeline"
-              href="https://twitter.com/metropolia?ref_src=twsrc%5Etfw"
-            >
-              Tweets by metropolia
-            </a>
+          {/* social media */}
+          <div className="flex flex-col lg:flex-row justify-between mb-8">
+            {/* twitter */}
+            <div className="mr-0 lg:mr-8 mb-8 rounded w-full lg:w-1/2 ">
+              <a
+                className="twitter-timeline"
+                data-lang="en"
+                data-width="100%"
+                data-height="700px"
+                data-theme="light"
+                href="https://twitter.com/metropolia?ref_src=twsrc%5Etfw"
+              >
+                Tweets by Metropolia
+              </a>
+            </div>
+            {/* instagram */}
+            <div className="w-full lg:w-1/2 h-[700px] overflow-scroll">
+              <InstagramEmbed
+                url="https://www.instagram.com/p/CxsnuojNVzI/"
+                maxWidth={320}
+                hideCaption={false}
+                containerTagName="div"
+                protocol=""
+                injectScript
+                onLoading={() => {}}
+                onSuccess={() => {}}
+                onAfterRender={() => {}}
+                onFailure={() => {}}
+              />
+            </div>
           </div>
         </body>
       </div>
