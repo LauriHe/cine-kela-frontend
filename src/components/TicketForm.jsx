@@ -100,24 +100,7 @@ const TicketForm = ({ isVisible, onClose }) => {
                       placeholder="Albuquerque"
                     />
                   </div>
-                  <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-                    <label
-                      class="block uppercase tracking-wide text-oc-cold-white text-xs font-bold mb-2"
-                      for="grid-state"
-                    >
-                      State
-                    </label>
-                    <div class="relative">
-                      <select
-                        class="block w-full bg-oc-cold-white border p-2 rounded-md"
-                        id="grid-state"
-                      >
-                        <option>New Mexico</option>
-                        <option>Missouri</option>
-                        <option>Texas</option>
-                      </select>
-                    </div>
-                  </div>
+
                   <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
                     <label
                       class="block uppercase tracking-wide text-oc-cold-white text-xs font-bold mb-2"

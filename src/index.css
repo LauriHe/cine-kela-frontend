@@ -58,6 +58,12 @@
   background-size: cover;
   background-position: center center;
 }
+.cardImg {
+  
+  background-image: url('./banner.webp');
+  background-size: cover;
+ 
+}
 
 body {
   min-height: 100vh;
