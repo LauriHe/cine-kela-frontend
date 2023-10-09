@@ -103,6 +103,7 @@ function Stream() {
         renderDonation();
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [donation]);
 
   const checkMoviePlaying = () => {
@@ -115,6 +116,7 @@ function Stream() {
       const premiereDate = movie.premiereDate;
       const premiereTime = movie.premiereTime;
       const expireTime = movie.expireTime;
+      const movieTicket = movie.ticket;
 
       if (currentDate === premiereDate && currentTime >= premiereTime && currentTime <= expireTime) {
         matchingTime = true;
@@ -122,16 +124,27 @@ function Stream() {
           moviePlaying = true;
           setShowNextMovie(false);
           setVideoLoop(false);
-          setVideoSource({
-            src: './movies/countdown.mp4',
-            type: 'video/mp4',
-          });
-          setTimeout(() => {
+
+          const ticket = localStorage.getItem(movieTicket);
+
+          if (ticket) {
             setVideoSource({
-              src: movie.source,
+              src: './movies/countdown.mp4',
               type: 'video/mp4',
             });
-          }, 13000);
+            setTimeout(() => {
+              setVideoSource({
+                src: movie.source,
+                type: 'video/mp4',
+              });
+            }, 13000);
+          } else {
+            setVideoLoop(true);
+            setVideoSource({
+              src: './noTicket.mp4',
+              type: 'video/mp4',
+            });
+          }
         }
       }
     });

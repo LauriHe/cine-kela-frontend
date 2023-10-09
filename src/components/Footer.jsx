@@ -1,30 +1,30 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
 function Footer() {
   const navigate = useNavigate();
 
   const navigateHome = () => {
-    navigate("/");
+    navigate('/');
   };
 
   const navigateStream = () => {
-    navigate("/stream");
+    navigate('/stream');
   };
 
   const navigateSchedule = () => {
-    navigate("/schedule");
+    navigate('/schedule');
   };
 
   const navigateArchive = () => {
-    navigate("/archive");
+    navigate('/archive');
   };
 
   const navigateTickets = () => {
-    navigate("/tickets");
+    navigate('/tickets');
   };
 
   const navigateInfo = () => {
-    navigate("/info");
+    navigate('/info');
   };
 
   return (
@@ -45,24 +45,24 @@ function Footer() {
           <section className="footerSec flex flex-col">
             <h1 className="text-xl font-bold">Sites</h1>
             <div className="flex flex-col py-4">
-              <btn className="footerLink" onClick={navigateHome}>
+              <button className="footerLink" onClick={navigateHome}>
                 Home
-              </btn>
-              <btn className="footerLink" onClick={navigateStream}>
+              </button>
+              <button className="footerLink" onClick={navigateStream}>
                 Stream
-              </btn>
-              <btn className="footerLink" onClick={navigateSchedule}>
+              </button>
+              <button className="footerLink" onClick={navigateSchedule}>
                 Schedule
-              </btn>
-              <btn className="footerLink" onClick={navigateArchive}>
+              </button>
+              <button className="footerLink" onClick={navigateArchive}>
                 Archive
-              </btn>
-              <btn className="footerLink" onClick={navigateTickets}>
+              </button>
+              <button className="footerLink" onClick={navigateTickets}>
                 Tickets
-              </btn>
-              <btn className="footerLink" onClick={navigateInfo}>
+              </button>
+              <button className="footerLink" onClick={navigateInfo}>
                 Info
-              </btn>
+              </button>
             </div>
           </section>
           {/* Links */}

@@ -1,10 +1,10 @@
-import { useEffect } from "react";
-import { InstagramEmbed } from "react-social-media-embed";
+import { useEffect } from 'react';
+import { InstagramEmbed } from 'react-social-media-embed';
 
 function Home() {
   useEffect(() => {
-    const script = document.createElement("script");
-    script.src = "https://platform.twitter.com/widgets.js";
+    const script = document.createElement('script');
+    script.src = 'https://platform.twitter.com/widgets.js';
     script.async = true;
     document.body.appendChild(script);
   }, []);
@@ -13,22 +13,17 @@ function Home() {
     <>
       <div className="bg-oc-space-blue">
         <div className="banner"></div>
-        <body className="w-10/12 m-auto">
+        <div className="w-10/12 m-auto">
           {/* main slogan / article */}
           <article className="mb-8">
             <h1 className="text-center py-8 px-8 text-4xl lg:text-5xl text-white leading-normal lg:leading-relaxed font-IM-Fell-English-SC">
-              Olen vilpittömän pahoillani, en aavistanut että sillan alla asui
-              filosoofi
+              Olen vilpittömän pahoillani, en aavistanut että sillan alla asui filosoofi
             </h1>
             <p className="text-white">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod
-              voluptate corrupti laboriosam repudiandae et. Asperiores odit
-              fugit voluptatem, tenetur numquam quo voluptatum. Unde quia beatae
-              laborum eius autem corporis exercitationem. Lorem ipsum dolor sit,
-              amet consectetur adipisicing elit. Sint tempore praesentium
-              repudiandae provident, accusantium aperiam suscipit eius eligendi
-              culpa optio ratione perspiciatis dolorem dolor illum impedit
-              sequi. Officiis, quisquam quae.
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod voluptate corrupti laboriosam repudiandae et. Asperiores odit fugit
+              voluptatem, tenetur numquam quo voluptatum. Unde quia beatae laborum eius autem corporis exercitationem. Lorem ipsum dolor sit, amet
+              consectetur adipisicing elit. Sint tempore praesentium repudiandae provident, accusantium aperiam suscipit eius eligendi culpa optio
+              ratione perspiciatis dolorem dolor illum impedit sequi. Officiis, quisquam quae.
             </p>
           </article>
           {/* cards / news */}
@@ -36,20 +31,15 @@ function Home() {
           <div className="flex flex-col ">
             {/* card */}
             <div className="flex flex-col lg:flex-row newsCard mb-8 rounded-md">
-              <img
-                src="/catTest.png"
-                className="flex-grow w-full lg:w-1/2 pr-0 lg:pr-8"
-              ></img>
+              <img src="/catTest.png" className="flex-grow w-full lg:w-1/2 pr-0 lg:pr-8"></img>
               {/* div for p and btn, do not change */}
               <div className="flex flex-col items-center justify-center flex-grow">
                 <h1 className="text-2xl my-4">Header</h1>
                 <p className="p-8">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Maiores obcaecati laborum harum soluta id voluptate alias vero
-                  molestiae atque error. Pariatur ipsam excepturi in laboriosam
-                  rerum quibusdam corporis voluptates quo.
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores obcaecati laborum harum soluta id voluptate alias vero molestiae
+                  atque error. Pariatur ipsam excepturi in laboriosam rerum quibusdam corporis voluptates quo.
                 </p>
-                <btn className="newsbtn">Read More</btn>
+                <button className="newsbtn">Read More</button>
               </div>
             </div>
             {/* right card */}
@@ -58,23 +48,18 @@ function Home() {
               <div className="flex flex-col items-center justify-center flex-grow">
                 <h1 className="text-2xl my-4">Header</h1>
                 <p className="p-8">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Maiores obcaecati laborum harum soluta id voluptate alias vero
-                  molestiae atque error. Pariatur ipsam excepturi in laboriosam
-                  rerum quibusdam corporis voluptates quo.
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores obcaecati laborum harum soluta id voluptate alias vero molestiae
+                  atque error. Pariatur ipsam excepturi in laboriosam rerum quibusdam corporis voluptates quo.
                 </p>
-                <btn className="newsbtn">Read More</btn>
+                <button className="newsbtn">Read More</button>
               </div>
-              <img
-                src="/catTest.png"
-                className="flex-grow w-full lg:w-1/2 pl-0 lg:pl-8"
-              ></img>
+              <img src="/catTest.png" className="flex-grow w-full lg:w-1/2 pl-0 lg:pl-8"></img>
             </div>
           </div>
           {/* social media */}
           <div className="flex flex-col lg:flex-row justify-between mb-8">
             {/* twitter */}
-            <div className="mr-0 lg:mr-8 mb-8 rounded w-full lg:w-1/2 ">
+            <div className="mr-0 lg:mr-8 mb-8 rounded w-full lg:w-1/2 noScrollbar">
               <a
                 className="twitter-timeline"
                 data-lang="en"
@@ -87,7 +72,7 @@ function Home() {
               </a>
             </div>
             {/* instagram */}
-            <div className="w-full lg:w-1/2 h-[700px] overflow-scroll">
+            <div className="w-full lg:w-1/2 h-[700px] overflow-scroll rounded-md noScrollbar">
               <InstagramEmbed
                 url="https://www.instagram.com/p/CxsnuojNVzI/"
                 maxWidth={320}
@@ -102,7 +87,7 @@ function Home() {
               />
             </div>
           </div>
-        </body>
+        </div>
       </div>
     </>
   );

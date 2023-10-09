@@ -6,7 +6,8 @@
     "premiereDate": "12.10.2023",
     "premiereTime": "12.00.00",
     "runningTime": "00.19.48",
-    "expireTime": "13.00.00"
+    "expireTime": "13.00.00",
+    "ticket": "ticket1"
   },
   "2": {
     "title": "Mikko EVTEKtoAlaska",
@@ -15,7 +16,8 @@
     "premiereDate": "13.10.2023",
     "premiereTime": "17.00.00",
     "runningTime": "00.01.21",
-    "expireTime": "18.00.00"
+    "expireTime": "18.00.00",
+    "ticket": "ticket2"
   },
   "3": {
     "title": "Morning_after",
@@ -24,7 +26,8 @@
     "premiereDate": "14.10.2023",
     "premiereTime": "15.00.00",
     "runningTime": "00.03.38",
-    "expireTime": "16.00.00"
+    "expireTime": "16.00.00",
+    "ticket": "ticket3"
   },
   "4": {
     "title": "Museo olohuoneena",
@@ -33,7 +36,8 @@
     "premiereDate": "15.10.2023",
     "premiereTime": "19.00.00",
     "runningTime": "00.02.53",
-    "expireTime": "20.00.00"
+    "expireTime": "20.00.00",
+    "ticket": "ticket4"
   },
   "5": {
     "title": "Opiskelijaelämää 2009",
@@ -42,6 +46,7 @@
     "premiereDate": "16.10.2023",
     "premiereTime": "20.00.00",
     "runningTime": "00.03.26",
-    "expireTime": "21.00.00"
+    "expireTime": "21.00.00",
+    "ticket": "ticket5"
   }
 }
