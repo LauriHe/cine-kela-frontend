@@ -4,6 +4,7 @@ function Info() {
   const [info1, setInfo1] = useState(false);
   const [info2, setInfo2] = useState(false);
   const [info3, setInfo3] = useState(false);
+  const [form, setForm] = useState(false);
 
   const toggleInfo1 = () => {
     setInfo1(!info1);
@@ -15,6 +16,29 @@ function Info() {
 
   const toggleInfo3 = () => {
     setInfo3(!info3);
+  };
+
+  const sendForm = (event) => {
+    event.preventDefault();
+    setForm(!form);
+    const body = document.querySelector("body");
+    if (form) {
+      body.style.overflow = "visible";
+    } else {
+      body.style.overflow = "hidden";
+    }
+  };
+
+  const closeForm = (event) => {
+    event.preventDefault();
+    setForm(!form);
+    window.location.reload();
+    const body = document.querySelector("body");
+    if (form) {
+      body.style.overflow = "visible";
+    } else {
+      body.style.overflow = "hidden";
+    }
   };
 
   return (
@@ -209,13 +233,27 @@ function Info() {
                   <textarea className="appearance-none block w-full bg-gray-200 text-black rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"></textarea>
                 </div>
               </div>
-              <input
-                type="submit"
-                value="Submit"
-                className="bg-oc-desert-yellow rounded p-2 text-black hover:bg-oc-test"
-              ></input>
+              <div className="flex justify-center mt-2">
+                <input
+                  type="submit"
+                  value="Submit"
+                  onClick={sendForm}
+                  className="bg-oc-desert-yellow rounded p-2 text-black hover:bg-oc-test "
+                ></input>
+              </div>
             </form>
           </section>
+          {form && (
+            <div className=" bg-oc-space-blue/[.95] fixed h-screen w-screen top-0 left-0 z-[100] py-8">
+              <div className="flex flex-col bg-oc-cold-white text-black text-center rounded-md p-8 w-4/12 m-auto">
+                <p>Thank you for contacting us.</p>
+                <p>We will get back to you soon.</p>
+                <button onClick={closeForm} className="newsbtn">
+                  Close
+                </button>
+              </div>
+            </div>
+          )}
         </body>
       </div>
     </>
