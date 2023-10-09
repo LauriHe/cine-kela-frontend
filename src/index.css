@@ -17,6 +17,41 @@
 @tailwind components;
 @tailwind utilities;
 
+.card {
+  transition: flex-grow 0.2s;
+
+  transition-timing-function: ease-in-out;
+}
+.card:hover > div > video {
+  display: block;
+}
+.card:hover > .day {
+  display: none;
+}
+
+.card:hover > div > p {
+  display: block;
+}
+.card:hover > div > div > button {
+  display: block;
+}
+.card:hover > div > .buttonDiv {
+  display: flex;
+}
+
+.card > div > video {
+  display: none;
+}
+
+.card > div > p {
+  display: none;
+}
+.card > div > div > button {
+  display: none;
+}
+.buttonDiv {
+  display: none;
+}
 .banner {
   height: 30rem;
   background-image: linear-gradient(to bottom, #ffffff00 60%, #191e39 100%),
@@ -24,7 +59,42 @@
   background-size: cover;
   background-position: center center;
 }
-
+.cardImg {
+  
+  background-image: url('./banner.webp');
+  background-size: 1600px 738px;
+  background-position: left 60%;
+}
+.cardImg2 {
+  
+  background-image: url('./banner.webp');
+  background-size: 1600px 738px;
+  background-position: -260px 60%;
+}
+.cardImg3 {
+  
+  background-image: url('./banner.webp');
+  background-size: 1600px 738px;
+  background-position: -520px 60%;
+}
+.cardImg4 {
+  
+  background-image: url('./banner.webp');
+  background-size: 1600px 738px;
+  background-position: -780px 60%;
+}
+.cardImg5 {
+  
+  background-image: url('./banner.webp');
+  background-size: 1600px 738px;
+  background-position: -1040px 60%;
+}
+.cardImg6 {
+  
+  background-image: url('./banner.webp');
+  background-size: 1600px 738px;
+  background-position: -1300px 60%;
+}
 body {
   min-height: 100vh;
   font-family: "tenorSans-Regular", sans-serif;
