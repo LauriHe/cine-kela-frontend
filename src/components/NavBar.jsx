@@ -70,9 +70,7 @@ function NavBar() {
           Ciné Kela
         </div>
       </div>
-      {/* aaaaa */}
 
-      {/* to burger */}
       <div className="flex items-center">
         <div className="hidden h-full md:flex items-center gap-10 pr-4 text-white">
           <button className="h-fit navBarBtn" onClick={navigateHome}>

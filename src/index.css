@@ -74,6 +74,17 @@ textarea {
   .burBarBtn {
     @apply text-white text-xl py-4 font-bold font-IM-Fell-English-SC hover:text-oc-desert-yellow;
   }
+  .infoPlus {
+    @apply bg-[url(./plus.svg)] py-4 h-10 w-10 bg-no-repeat bg-cover absolute right-3 top-4;
+  }
+}
+
+.pekka:hover > button {
+  background-image: url(./plusHover.svg) !important;
+}
+
+.liisa:hover > button {
+  background-image: url(./minusHover.svg) !important;
 }
 
 @layer components {
