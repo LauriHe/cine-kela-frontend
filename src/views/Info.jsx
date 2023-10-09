@@ -30,15 +30,8 @@ function Info() {
   };
 
   const closeForm = (event) => {
-    event.preventDefault();
-    setForm(!form);
+    sendForm;
     window.location.reload();
-    const body = document.querySelector("body");
-    if (form) {
-      body.style.overflow = "visible";
-    } else {
-      body.style.overflow = "hidden";
-    }
   };
 
   return (
