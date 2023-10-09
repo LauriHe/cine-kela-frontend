@@ -1,6 +1,6 @@
-import { Outlet, useLocation } from 'react-router-dom';
-import NavBar from '../components/NavBar';
-import Footer from '../components/Footer';
+import { Outlet, useLocation } from "react-router-dom";
+import NavBar from "../components/NavBar";
+import Footer from "../components/Footer";
 
 function Layout() {
   const location = useLocation();
@@ -9,10 +9,16 @@ function Layout() {
       <nav className="h-20 flex-shrink-0">
         <NavBar></NavBar>
       </nav>
-      <main className={location.pathname === '/stream' ? 'bg-oc-space-blue' : 'bg-oc-space-blue h-fit'}>
+      <main
+        className={
+          location.pathname === "/stream"
+            ? "bg-oc-space-blue"
+            : "bg-oc-space-blue h-fit"
+        }
+      >
         <Outlet />
       </main>
-      {location.pathname !== '/stream' && (
+      {location.pathname !== "/stream" && (
         <footer className="flex-shrink-0">
           <Footer></Footer>
         </footer>
