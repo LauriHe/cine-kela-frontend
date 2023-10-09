@@ -96,7 +96,7 @@ function NavBar() {
       </div>
 
       {burger && (
-        <div className="flex flex-col bg-oc-space-blue/[.95] h-[500px] w-[500px] absolute z-[100] py-8">
+        <div className="flex flex-col bg-oc-space-blue/[.95] h-screen w-screen absolute z-[100] py-8">
           <button className="burgerClose" onClick={toggleBurger}></button>
           <button className="h-fit burBarBtn" onClick={navigateHome}>
             Home
