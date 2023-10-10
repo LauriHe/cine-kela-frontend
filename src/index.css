@@ -1,15 +1,15 @@
 @font-face {
-  font-family: 'IM Fell English SC';
+  font-family: "IM Fell English SC";
   src: url(./IMFellEnglishSC-Regular.ttf);
 }
 
 @font-face {
-  font-family: 'Cantarell-Regular';
+  font-family: "Cantarell-Regular";
   src: url(./Cantarell-Regular.ttf);
 }
 
 @font-face {
-  font-family: 'TenorSans-Regular';
+  font-family: "TenorSans-Regular";
   src: url(./TenorSans-Regular.ttf);
 }
 
@@ -58,69 +58,70 @@
 }
 .banner {
   height: 30rem;
-  background-image: linear-gradient(to bottom, #ffffff00 60%, #191e39 100%), url('./banner.webp');
+  background-image: linear-gradient(to bottom, #ffffff00 60%, #191e39 100%),
+    url("./banner.webp");
   background-size: cover;
   background-position: center center;
 }
 .cardImg {
-  background-image: url('./banner.webp');
+  background-image: url("./banner.webp");
   background-size: 1600px 738px;
   background-position: left 60%;
 }
 .cardImg2 {
-  background-image: url('./banner.webp');
+  background-image: url("./banner.webp");
   background-size: 1600px 738px;
   background-position: -260px 60%;
 }
 .cardImg3 {
-  background-image: url('./banner.webp');
+  background-image: url("./banner.webp");
   background-size: 1600px 738px;
   background-position: -520px 60%;
 }
 .cardImg4 {
-  background-image: url('./banner.webp');
+  background-image: url("./banner.webp");
   background-size: 1600px 738px;
   background-position: -780px 60%;
 }
 .cardImg5 {
-  background-image: url('./banner.webp');
+  background-image: url("./banner.webp");
   background-size: 1600px 738px;
   background-position: -1040px 60%;
 }
 .cardImg6 {
-  background-image: url('./banner.webp');
+  background-image: url("./banner.webp");
   background-size: 1600px 738px;
   background-position: -1300px 60%;
 }
 
 @media screen and (min-width: 4000px), (min-height: 1200px) {
   .cardImg {
-    background-image: url('./banner.webp');
+    background-image: url("./banner.webp");
     background-size: 2200px 1014px;
     background-position: left 60%;
   }
   .cardImg2 {
-    background-image: url('./banner.webp');
+    background-image: url("./banner.webp");
     background-size: 2200px 1014px;
     background-position: -360px 60%;
   }
   .cardImg3 {
-    background-image: url('./banner.webp');
+    background-image: url("./banner.webp");
     background-size: 2200px 1014px;
     background-position: -720px 60%;
   }
   .cardImg4 {
-    background-image: url('./banner.webp');
+    background-image: url("./banner.webp");
     background-size: 2200px 1014px;
     background-position: -1080px 60%;
   }
   .cardImg5 {
-    background-image: url('./banner.webp');
+    background-image: url("./banner.webp");
     background-size: 2200px 1014px;
     background-position: -1440px 60%;
   }
   .cardImg6 {
-    background-image: url('./banner.webp');
+    background-image: url("./banner.webp");
     background-size: 2200px 1014px;
     background-position: -1800px 60%;
   }
@@ -131,7 +132,7 @@
 
 body {
   min-height: 100vh;
-  font-family: 'tenorSans-Regular', sans-serif;
+  font-family: "tenorSans-Regular", sans-serif;
 }
 
 footer {
@@ -164,7 +165,7 @@ textarea {
     @apply hover:text-oc-desert-yellow font-IM-Fell-English-SC;
   }
   .footerSec {
-    @apply p-5;
+    @apply p-1 lg:p-5 w-full lg:w-1/4;
   }
   .footerLink {
     @apply hover:text-oc-hover-pink;
