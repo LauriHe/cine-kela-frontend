@@ -1,9 +1,23 @@
+import { useState } from "react";
+
 const TicketForm = ({ isVisible, onClose }) => {
   if (!isVisible) return null;
+
+  const [selectedTicket, setSelectedTicket] = useState("ticket1");
+
+  const handleTicketChange = (event) => {
+    console.log(event.target.value);
+    setSelectedTicket(event.target.value);
+  };
 
   const closeForm = (e) => {
     if (e.target.id === "background") onClose();
   };
+  const formSubmit = () => {
+    console.log(selectedTicket);
+    localStorage.setItem(selectedTicket, "true");
+  };
+
   return (
     <div
       className="  text-oc-cold-white fixed inset-0 bg-oc-space-blue bg-opacity-20 backdrop-blur-sm flex justify-center items-center "
@@ -25,13 +39,17 @@ const TicketForm = ({ isVisible, onClose }) => {
                   <label className=" block uppercase text-oc-cold-white text-xs font-bold mb-2 w-1/2">
                     Select your ticket!
                   </label>
-                  <select className="block w-full bg-oc-cold-white p-3 rounded-md text-oc-space-blue">
-                    <option>Monday Ticket</option>
-                    <option>Tuesday Ticket</option>
-                    <option>Wednesday Ticket</option>
-                    <option>Thursday Ticket</option>
-                    <option>Friday Ticket</option>
-                    <option>Week Pass</option>
+                  <select
+                    className="block w-full bg-oc-cold-white p-3 rounded-md text-oc-space-blue"
+                    onChange={handleTicketChange}
+                  >
+                    <option>Choose your ticket!</option>
+                    <option value={"ticket1"}>Monday Ticket</option>
+                    <option value={"ticket2"}>Tuesday Ticket</option>
+                    <option value={"ticket3"}>Wednesday Ticket</option>
+                    <option value={"ticket4"}>Thursday Ticket</option>
+                    <option value={"ticket5"}>Friday Ticket</option>
+                    <option value={"ticket6"}>Week Pass</option>
                   </select>
                 </div>
                 <h2 className=" text-oc-cold-white font-bold text-3xl text-center h-1/6 p-10">
@@ -115,6 +133,12 @@ const TicketForm = ({ isVisible, onClose }) => {
                       placeholder="90210"
                     />
                   </div>
+                  <button
+                    className=" text-lg font-semibold text-oc-space-blue bg-oc-desert-yellow hover:bg-oc-hover-pink rounded-md p-2 "
+                    onClick={formSubmit}
+                  >
+                    Order
+                  </button>
                 </div>
               </form>
             </div>
