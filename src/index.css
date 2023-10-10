@@ -17,6 +17,10 @@
 @tailwind components;
 @tailwind utilities;
 
+#root {
+  background-color: #191e39;
+}
+
 .card {
   transition: flex-grow 0.2s;
 
@@ -195,7 +199,7 @@ textarea {
     @apply flex flex-row justify-around xs:justify-center xs:gap-10 pt-2 flex-grow-0 flex-shrink basis-auto lg:justify-around lg:gap-0;
   }
   .btn {
-    @apply px-2 rounded-md bg-oc-space-blue text-white text-sm;
+    @apply px-2 rounded-md bg-oc-space-blue text-white text-sm hover:bg-oc-desert-yellow hover:text-black;
   }
   .icon-btn {
     @apply w-8 h-8 bg-oc-space-blue rounded-md bg-center bg-no-repeat bg-icon;
@@ -239,7 +243,7 @@ textarea {
   }
 
   .donate-box {
-    @apply absolute z-40 w-[90%] s:w-[444px] h-[8rem] p-1 rounded-md transform top-8 -translate-x-1/2 left-1/2;
+    @apply absolute z-40 w-[90%] s:min-w-[444px] s:max-w-[50%] s:w-fit h-[10rem] p-1 rounded-md transform top-8 -translate-x-1/2 left-1/2;
     background: linear-gradient(60deg, #5f86f2, #a65ff2, #f25fd0, #f25f61, #f2cb5f, #abf25f, #5ff281, #5ff2f0);
     background-size: 300% 300%;
     background-position: 0 50%;
@@ -247,7 +251,7 @@ textarea {
   }
 
   .donate-box-content {
-    @apply w-full h-full flex flex-col items-center justify-around z-50;
+    @apply w-full h-full flex flex-col items-center justify-around z-50 px-2;
   }
 }
 

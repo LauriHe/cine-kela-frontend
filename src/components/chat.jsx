@@ -144,7 +144,7 @@ function Chat({ handleWindow, windowed, setDonationData }) {
     <div className={windowed ? 'chat-container' : 'chat-container rounded-md'}>
       <div id="buttons" className={windowed ? 'chat-buttons-container lg:justify-center lg:gap-10' : 'chat-buttons-container'}>
         <button
-          className={currentRoom === 'room1' ? 'btn bg-black' : 'btn'}
+          className={currentRoom === 'room1' ? 'btn bg-oc-test hover:bg-oc-test text-black' : 'btn'}
           onClick={() => {
             joinRoom('room1');
           }}
@@ -152,7 +152,7 @@ function Chat({ handleWindow, windowed, setDonationData }) {
           Room 1
         </button>
         <button
-          className={currentRoom === 'room2' ? 'btn bg-black' : 'btn'}
+          className={currentRoom === 'room2' ? 'btn bg-oc-test hover:bg-oc-test text-black' : 'btn'}
           onClick={() => {
             joinRoom('room2');
           }}
@@ -160,7 +160,7 @@ function Chat({ handleWindow, windowed, setDonationData }) {
           Room 2
         </button>
         <button
-          className={currentRoom === 'room3' ? 'btn bg-black' : 'btn'}
+          className={currentRoom === 'room3' ? 'btn bg-oc-test hover:bg-oc-test text-black' : 'btn'}
           onClick={() => {
             joinRoom('room3');
           }}
@@ -177,12 +177,12 @@ function Chat({ handleWindow, windowed, setDonationData }) {
       <div className={emojiDonateOpen ? 'w-full p-2 relative' : 'w-full p-0 relative'}>
         <div className={emojiDonateOpen ? 'emoji-container' : 'h-0'}>
           <button
-            className={emojiDonateOpen ? 'icon-btn emoji-toggle-btn' : 'icon-btn emoji-toggle-btn -top-8'}
+            className={emojiDonateOpen ? 'icon-btn emoji-toggle-btn' : 'icon-btn emoji-toggle-btn -top-8 border-solid border-oc-pastel-blue border-2'}
             style={emojiDonateOpen ? { borderRadius: '0.375rem 0.375rem 0 0' } : { borderRadius: '0.375rem' }}
             onClick={toggleEmoji}
           ></button>
           <button
-            className={emojiDonateOpen ? 'icon-btn donate-toggle-btn' : 'icon-btn donate-toggle-btn -top-8'}
+            className={emojiDonateOpen ? 'icon-btn donate-toggle-btn' : 'icon-btn donate-toggle-btn -top-8 border-solid border-oc-pastel-blue border-2'}
             style={emojiDonateOpen ? { borderRadius: '0.375rem 0.375rem 0 0' } : { borderRadius: '0.375rem' }}
             onClick={toggleDonate}
           ></button>
@@ -207,7 +207,7 @@ function Chat({ handleWindow, windowed, setDonationData }) {
           >
             <div className="w-full flex justify-around">
               <button
-                className={donateAmount == 5 ? 'btn bg-black py-1' : 'btn bg-oc-pastel-blue py-1'}
+                className={donateAmount == 5 ? 'btn bg-oc-test hover:bg-oc-test text-black py-1' : 'btn bg-oc-pastel-blue py-1'}
                 type="button"
                 value={5}
                 onClick={handleDonateAmountChange}
@@ -215,7 +215,7 @@ function Chat({ handleWindow, windowed, setDonationData }) {
                 5€
               </button>
               <button
-                className={donateAmount == 10 ? 'btn bg-black py-1' : 'btn bg-oc-pastel-blue py-1'}
+                className={donateAmount == 10 ? 'btn bg-oc-test hover:bg-oc-test text-black py-1' : 'btn bg-oc-pastel-blue py-1'}
                 type="button"
                 value={10}
                 onClick={handleDonateAmountChange}
@@ -223,7 +223,7 @@ function Chat({ handleWindow, windowed, setDonationData }) {
                 10€
               </button>
               <button
-                className={donateAmount == 50 ? 'btn bg-black py-1' : 'btn bg-oc-pastel-blue py-1'}
+                className={donateAmount == 50 ? 'btn bg-oc-test hover:bg-oc-test text-black py-1' : 'btn bg-oc-pastel-blue py-1'}
                 type="button"
                 value={50}
                 onClick={handleDonateAmountChange}

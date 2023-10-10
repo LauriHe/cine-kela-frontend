@@ -200,7 +200,7 @@ function Stream() {
             {showDonationContent && (
               <div className="donate-box-content">
                 <p className="text-white">{currentDonation?.username + ' donated ' + currentDonation?.donateAmount + '€!'}</p>
-                <p className="text-white">{'Message: ' + currentDonation?.donateMessage}</p>
+                <p className="text-white break-all">{'Message: ' + (currentDonation?.donateMessage.length > 200 ? currentDonation?.donateMessage.slice(0,200) : currentDonation?.donateMessage)}</p>
                 <div className="w-full h-7 px-4 rounded-md">
                   <div className="w-full h-full flex items-center relative bg-oc-pastel-blue rounded-md">
                     <div
