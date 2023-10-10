@@ -254,7 +254,7 @@ function Schedule() {
                   Lorem ipsum dolor sit amet consectetur, adipisicing elit.
                   Labore necessitatibus tenetur nam, placeat magnam est, nulla
                   quaerat at, recusandae esse aspernatur unde itaque quas alias
-                  omnis sit laudantium neque? Eum?
+                  omnis sit laudantium neque? Eums?
                 </p>
                 <div className=" buttonDiv bg-oc-cold-white w-full flex justify-center items-center rounded-b-md pb-4">
                   <button
