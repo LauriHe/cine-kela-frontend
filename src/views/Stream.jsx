@@ -88,12 +88,12 @@ function Stream() {
     setTimeout(() => {
       setShowDonationContent(false);
       setShowDonationBox(false);
-    }, 3000);
+    }, 5000);
 
     setTimeout(() => {
       donations.current.shift();
       renderDonation();
-    }, 4000);
+    }, 6000);
   };
 
   useEffect(() => {
