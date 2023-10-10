@@ -1,10 +1,10 @@
-import { useEffect } from 'react';
-import { InstagramEmbed } from 'react-social-media-embed';
+import { useEffect } from "react";
+import { InstagramEmbed } from "react-social-media-embed";
 
 function Home() {
   useEffect(() => {
-    const script = document.createElement('script');
-    script.src = 'https://platform.twitter.com/widgets.js';
+    const script = document.createElement("script");
+    script.src = "https://platform.twitter.com/widgets.js";
     script.async = true;
     document.body.appendChild(script);
   }, []);
@@ -37,10 +37,15 @@ function Home() {
           <div className="flex flex-col ">
             {/* card */}
             <div className="flex flex-col lg:flex-row newsCard mb-8 rounded-md">
-              <img src="/catTest.png" className="flex-grow w-full lg:w-1/2 pr-0 lg:pr-8"></img>
+              <img
+                src="/catTest.png"
+                className="flex-grow w-full lg:w-1/2"
+              ></img>
               {/* div for p and btn, do not change */}
-              <div className="flex flex-col items-center justify-center flex-grow">
-                <h1 className="text-2xl my-4 text-center">Celebrating the Art of Animation</h1>
+              <div className="flex flex-col items-center justify-center flex-grow w-full lg:w-1/2">
+                <h1 className="text-2xl my-4 text-center">
+                  Celebrating the Art of Animation
+                </h1>
                 <p className="p-8">
                   {`In the enchanting world of cinema, animation holds a special place. It's a realm where creativity knows no bounds, where stories come to life through the magic of imagery, and where imagination takes flight. Ciné Kela, the Finnish film festival dedicated to animated indie films, stands as a testament to this captivating art form...`}
                 </p>
@@ -50,14 +55,16 @@ function Home() {
             {/* right card */}
             <div className="flex flex-col-reverse lg:flex-row newsCard mb-8 rounded-md">
               {/* div for p and btn, do not change */}
-              <div className="flex flex-col items-center justify-center flex-grow">
-                <h1 className="text-2xl my-4 text-center">Ciné Kela: Where Animation Becomes a Canvas for Creativity</h1>
+              <div className="flex flex-col items-center justify-center flex-grow w-full lg:w-1/2 p-8">
+                <h1 className="text-2xl my-4 text-center">
+                  Ciné Kela: Where Animation Becomes a Canvas for Creativity
+                </h1>
                 <p className="p-8">
                   {`In the realm of cinematic artistry, animation stands as a unique canvas, allowing storytellers to paint their narratives with vivid imagination and boundless creativity. Ciné Kela, the Finnish film festival dedicated to animated indie films, is the place where these vibrant tales come to life, captivating audiences and celebrating the art of animation...`}
                 </p>
                 <button className="newsbtn">Read More</button>
               </div>
-              <img src="/catTest.png" className="flex-grow w-full lg:w-1/2 pl-0 lg:pl-8"></img>
+              <img src="/catTest.png" className=" w-full lg:w-1/2"></img>
             </div>
           </div>
           {/* social media */}
