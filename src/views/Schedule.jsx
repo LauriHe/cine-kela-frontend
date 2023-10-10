@@ -83,10 +83,8 @@ function Schedule() {
                   Drama
                 </h3>
                 <p className=" text-lg font-medium text-oc-space-blue p-4 bg-oc-cold-white h-full w-full rounded-b-md">
-                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                  Labore necessitatibus tenetur nam, placeat magnam est, nulla
-                  quaerat at, recusandae esse aspernatur unde itaque quas alias
-                  omnis sit laudantium neque? Eum?
+                  Join in to watch the horror of 3 stooges struggling their way
+                  through a glamorous film festival opening ceremony.
                 </p>
               </div>
             </div>
@@ -119,10 +117,8 @@ function Schedule() {
                   3D, CGI, Horror
                 </h3>
                 <p className=" text-lg font-medium text-oc-space-blue p-4 bg-oc-cold-white h-full w-full ">
-                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                  Labore necessitatibus tenetur nam, placeat magnam est, nulla
-                  quaerat at, recusandae esse aspernatur unde itaque quas alias
-                  omnis sit laudantium neque? Eum?
+                  Sit back and enjoy The vision of a skilled 3d animation
+                  student!
                 </p>
                 <div className=" buttonDiv bg-oc-cold-white w-full flex justify-center items-center rounded-b-md pb-4">
                   <button
@@ -163,10 +159,8 @@ function Schedule() {
                   Relaxing, Adventure
                 </h3>
                 <p className=" text-lg font-medium text-oc-space-blue p-4 bg-oc-cold-white h-full w-full ">
-                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                  Labore necessitatibus tenetur nam, placeat magnam est, nulla
-                  quaerat at, recusandae esse aspernatur unde itaque quas alias
-                  omnis sit laudantium neque? Eum?
+                  This lovely nostalgia blast truly captures the idyllic feeling
+                  of years past. Join us on this roadtrip to memory lane!
                 </p>
                 <div className=" buttonDiv bg-oc-cold-white w-full flex justify-center items-center rounded-b-md pb-4">
                   <button
@@ -207,10 +201,9 @@ function Schedule() {
                   Scifi, Horror, Comedy
                 </h3>
                 <p className=" text-lg font-medium text-oc-space-blue p-4 bg-oc-cold-white h-full w-full ">
-                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                  Labore necessitatibus tenetur nam, placeat magnam est, nulla
-                  quaerat at, recusandae esse aspernatur unde itaque quas alias
-                  omnis sit laudantium neque? Eum?
+                  First look at this film will make you think its "just" a
+                  showcase of a 3d model of Leppävaara campus, but it quickly
+                  evolves into something far more sinister...
                 </p>
                 <div className=" buttonDiv bg-oc-cold-white w-full flex justify-center items-center rounded-b-md pb-4">
                   <button
@@ -251,10 +244,9 @@ function Schedule() {
                   Documentary
                 </h3>
                 <p className=" text-lg font-medium text-oc-space-blue p-4 bg-oc-cold-white h-full w-full">
-                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                  Labore necessitatibus tenetur nam, placeat magnam est, nulla
-                  quaerat at, recusandae esse aspernatur unde itaque quas alias
-                  omnis sit laudantium neque? Eum?
+                  This movie features the showcase of an artproject of a
+                  Metropolia student. You can feel as if you were in the middle
+                  of the hubbub of Arabia campus!
                 </p>
                 <div className=" buttonDiv bg-oc-cold-white w-full flex justify-center items-center rounded-b-md pb-4">
                   <button
@@ -295,10 +287,9 @@ function Schedule() {
                   Horror
                 </h3>
                 <p className=" text-lg font-medium text-oc-space-blue p-4 bg-oc-cold-white h-full w-full">
-                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                  Labore necessitatibus tenetur nam, placeat magnam est, nulla
-                  quaerat at, recusandae esse aspernatur unde itaque quas alias
-                  omnis sit laudantium neque? Eum?
+                  Join us on an adventure to 2009 to take a look at the
+                  schoollife of a Metropolia student. This blast from the past
+                  will be sure to make you miss the calm of student life!
                 </p>
                 <div className=" buttonDiv bg-oc-cold-white w-full flex justify-center items-center rounded-b-md pb-4">
                   <button
