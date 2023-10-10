@@ -52,7 +52,7 @@ function Info() {
                   }
                   onClick={toggleInfo1}
                 >
-                  <h1 className="text-xl font-bold py-4">Question 1</h1>
+                  <h1 className="text-xl font-bold py-4">Where does Ciné Kela take place?</h1>
                   <button
                     className={
                       info1 ? "infoPlus bg-[url(./minus.svg)]" : "infoPlus"
@@ -62,10 +62,7 @@ function Info() {
 
                 {info1 && (
                   <p className="text-base">
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                    Laborum, quam eaque quidem totam molestiae, odio eum qui
-                    sunt culpa laudantium provident dolorem? Modi quos maxime id
-                    veniam aut iste beatae.
+                    Ciné Kela is an online film festival. You can watch the films from the comfort of your own home.
                   </p>
                 )}
               </div>
@@ -79,7 +76,7 @@ function Info() {
                   }
                   onClick={toggleInfo2}
                 >
-                  <h1 className="text-xl font-bold py-4">Question 2</h1>
+                  <h1 className="text-xl font-bold py-4">When will Ciné Kela take place?</h1>
                   <button
                     className={
                       info2 ? "infoPlus bg-[url(./minus.svg)]" : "infoPlus"
@@ -89,10 +86,7 @@ function Info() {
 
                 {info2 && (
                   <p className="text-base">
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                    Laborum, quam eaque quidem totam molestiae, odio eum qui
-                    sunt culpa laudantium provident dolorem? Modi quos maxime id
-                    veniam aut iste beatae.
+                    The festival takes place between 11.10.2023 and 16.10.2023. For more information, please visit the schedule page.
                   </p>
                 )}
               </div>
@@ -106,7 +100,7 @@ function Info() {
                   }
                   onClick={toggleInfo3}
                 >
-                  <h1 className="text-xl font-bold py-4">Question 3</h1>
+                  <h1 className="text-xl font-bold py-4">Do I need to buy a ticket?</h1>
                   <button
                     className={
                       info3 ? "infoPlus bg-[url(./minus.svg)]" : "infoPlus"
@@ -116,10 +110,7 @@ function Info() {
 
                 {info3 && (
                   <p className="text-base">
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                    Laborum, quam eaque quidem totam molestiae, odio eum qui
-                    sunt culpa laudantium provident dolorem? Modi quos maxime id
-                    veniam aut iste beatae.
+                  The opening ceremony is free to watch. To watch the films, you need to buy a ticket. You can buy a ticket from our website.
                   </p>
                 )}
               </div>
