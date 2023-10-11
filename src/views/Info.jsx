@@ -6,6 +6,7 @@ function Info() {
   const [info3, setInfo3] = useState(false);
   const [form, setForm] = useState(false);
 
+  // Functions for toggling info text
   const toggleInfo1 = () => {
     setInfo1(!info1);
   };
@@ -18,6 +19,7 @@ function Info() {
     setInfo3(!info3);
   };
 
+  // Send form and show confirmation
   const sendForm = (event) => {
     event.preventDefault();
     setForm(!form);
@@ -29,6 +31,7 @@ function Info() {
     }
   };
 
+  // Close form and reload page
   const closeForm = () => {
     sendForm;
     window.location.reload();

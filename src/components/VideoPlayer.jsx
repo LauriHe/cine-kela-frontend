@@ -38,19 +38,9 @@ function VideoPlayer({ source, loop }) {
       videoRef.current.appendChild(videoElement);
 
       const player = (playerRef.current = videojs(videoElement, options, () => {
-        player.on('waiting', () => {
-          //videojs.log('player is waiting');
-        });
-
-        player.on('dispose', () => {
-          //videojs.log('player will dispose');
-        });
       }));
 
       player.addClass('vjs-theme-city');
-
-      // You could update an existing player in the `else` block here
-      // on prop change, for example:
     } else {
       const player = playerRef.current;
 

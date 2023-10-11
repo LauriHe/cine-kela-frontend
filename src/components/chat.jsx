@@ -13,69 +13,85 @@ function Chat({ handleWindow, windowed, setDonationData }) {
   const [emojiDonateOpen, setEmojiDonateOpen] = useState(false);
   const [showEmoji, setShowEmoji] = useState(false);
   const [showDonate, setShowDonate] = useState(false);
-
   const [donateMessage, setDonateMessage] = useState('');
   const [donateAmount, setDonateAmount] = useState(5);
   const [donateInputPlaceholder, setDonateInputPlaceholder] = useState('Input a message');
   const [donateInputError, setDonateInputError] = useState(false);
 
+  // Handle chat message input field change
   const handleInputChange = (event) => {
     setInput(event.target.value);
   };
 
+  // Emit username to server and connect socket
+  const handleUsernameSubmit = (event) => {
+      event.preventDefault();
+      const username = input;
+
+      // Try connecting to socket
+      socket.auth = { username };
+      socket.connect();
+
+      // If connection is successful, prepare chat input field
+      socket.on('connect', () => {
+        setSocketConnected(true);
+        setInputError(false);
+        setInputPlaceholder('Write a message');
+        setInput('');
+      });
+  };
+
+  // Emit chat message to server and reset input field
   const handleMessageSubmit = (event) => {
     event.preventDefault();
     socket.emit('chat messages', input);
     setInput('');
   };
 
-  const handleUsernameSubmit = (event) => {
-    event.preventDefault();
-    const username = input;
-    socket.auth = { username };
-    socket.connect();
-    socket.on('connect', () => {
-      setSocketConnected(true);
-      setInputError(false);
-      setInputPlaceholder('Write a message');
-      setInput('');
-    });
-  };
-
+  // Handle donation message input field change
   const handleDonateInputChange = (event) => {
     setDonateMessage(event.target.value);
   };
 
+  // Handle donation amount change
   const handleDonateAmountChange = (event) => {
     setDonateAmount(event.target.value);
   };
 
+  // Emit donation message to and amount to server and reset input field
   const handleDonationSubmit = (event) => {
     event.preventDefault();
     setDonateMessage('');
     socket.emit('donations', donateAmount, donateMessage);
   };
 
+
+  // Emit selected emoji to server
   const handleEmojiSubmit = (event) => {
     const emoji = event.target.value;
     socket.emit('chat messages', emoji, true);
   };
 
+  // Join a chat room
   const joinRoom = (room) => {
     setChatMessages([]);
     socket.emit('join', room);
     setCurrentRoom(room);
   };
 
+  // Handle emoji and donation popups
   const toggleEmoji = () => {
+    // If emoji/donation popup is closed, open it
     if (!emojiDonateOpen) {
       setEmojiDonateOpen(true);
       setShowEmoji(true);
     } else {
+      // If donate popup is open, close it and open emoji popup
       if (showDonate) {
         setShowDonate(false);
         setShowEmoji(true);
       }
+      // If emoji popup is open, close it
       if (showEmoji) {
         setShowEmoji(false);
         setEmojiDonateOpen(false);
@@ -83,15 +99,19 @@ function Chat({ handleWindow, windowed, setDonationData }) {
     }
   };
 
+  // Handle emoji and donation popups
   const toggleDonate = () => {
+    // If emoji/donation popup is closed, open it
     if (!emojiDonateOpen) {
       setEmojiDonateOpen(true);
       setShowDonate(true);
     } else {
+      // If emoji popup is open, close it and open donate popup
       if (showEmoji) {
         setShowEmoji(false);
         setShowDonate(true);
       }
+      // If donate popup is open, close it
       if (showDonate) {
         setShowDonate(false);
         setEmojiDonateOpen(false);
@@ -99,8 +119,11 @@ function Chat({ handleWindow, windowed, setDonationData }) {
     }
   };
 
+  // Handle incoming chat and donation events from server
   useEffect(() => {
     if (socketConnected) {
+
+      // Join a room and get chat messages
       socket.emit('chat messages', '');
       socket.emit('join', currentRoom);
       socket.on('chat messages', (messages) => {
@@ -109,16 +132,21 @@ function Chat({ handleWindow, windowed, setDonationData }) {
 
       setDonateInputError(false);
       setDonateInputPlaceholder('Write a message');
+
+      // Get donation messages
       socket.on('donations', (donation) => {
         setDonationData(donation);
       });
     } else if (socket.connected) {
+      // If socket is connected, prepare chat input field and set socketConnected to true
       setInputPlaceholder('Write a message');
       setSocketConnected(true);
     }
   }, [socketConnected, currentRoom, setDonationData]);
 
+  // Handle socket connection errors
   useEffect(() => {
+    // Communicate connection errors to user by changing input field placeholder
     socket.on('connect_error', (err) => {
       if (err.message === 'invalid username') {
         setSocketConnected(false);
@@ -132,16 +160,11 @@ function Chat({ handleWindow, windowed, setDonationData }) {
         setInputPlaceholder('Input a username');
       }
     });
-
-    /*return () => {
-      socket.disconnect();
-      socket.off('connect_error');
-      socket.off('chat messages');
-    };*/
   }, []);
 
   return (
     <div className={windowed ? 'chat-container' : 'chat-container rounded-md'}>
+      {/* Room selection and popup toggle */}
       <div id="buttons" className={windowed ? 'chat-buttons-container lg:justify-center lg:gap-10' : 'chat-buttons-container'}>
         <button
           className={currentRoom === 'room1' ? 'btn bg-oc-test hover:bg-oc-test text-black' : 'btn'}
@@ -169,11 +192,13 @@ function Chat({ handleWindow, windowed, setDonationData }) {
         </button>
         <button className={windowed ? 'icon-btn bg-[url(./dock.svg)]' : 'icon-btn bg-[url(./pip.svg)]'} onClick={handleWindow}></button>
       </div>
+      {/* Chat messages */}
       <div className="chat-messages">
         {chatMessages.map((message, index) => {
           return <ChatMessage message={message} key={index}></ChatMessage>;
         })}
       </div>
+      {/* Emojies and donations */}
       <div className={emojiDonateOpen ? 'w-full p-2 relative' : 'w-full p-0 relative'}>
         <div className={emojiDonateOpen ? 'emoji-container' : 'h-0'}>
           <button
@@ -249,6 +274,7 @@ function Chat({ handleWindow, windowed, setDonationData }) {
           </div>
         </div>
       </div>
+      {/* Chat input form */}
       <form id="message-input" onSubmit={socketConnected ? handleMessageSubmit : handleUsernameSubmit} className="chat-form">
         <input
           type="text"

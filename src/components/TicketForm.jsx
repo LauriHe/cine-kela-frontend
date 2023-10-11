@@ -5,9 +5,11 @@ const TicketForm = ({ setShowModal, blurBackground }) => {
   const [selectedTicket, setSelectedTicket] = useState("none");
   const [ticketError, setTicketError] = useState(false);
 
+  // Handle ticket selection
   const handleTicketChange = (event) => {
-    console.log(event.target.value);
-    const existingTicket = localStorage.getItem(event.target.value);
+    const existingTicket = localStorage.getItem(event.target.value); // Check if user already has this ticket
+
+    // If user already has this ticket, show error
     if (existingTicket) {
       setSelectedTicket("none");
       setTicketError(true);
@@ -17,11 +19,14 @@ const TicketForm = ({ setShowModal, blurBackground }) => {
     }
   };
 
+  // Close form if user clicks outside of it
   const closeForm = (e) => {
     if (e.target.id === "background") {
       setShowModal(false);
     }
   };
+
+  // Submit form and save ticket to local storage
   const formSubmit = () => {
     console.log(selectedTicket);
     localStorage.setItem(selectedTicket, "true");

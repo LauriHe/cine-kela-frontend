@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 function Footer() {
   const navigate = useNavigate();
 
+  // Functions for navigating to different pages
   const navigateHome = () => {
     navigate("/");
   };

@@ -2,6 +2,8 @@ import { useEffect } from "react";
 import VodPlayer from "../components/VodPlayer";
 
 function Archive() {
+
+  // Set background color of video player pilar box
   useEffect(() => {
     const videoJs = document.querySelector("video");
     videoJs.style.backgroundColor = "#37436d";

@@ -2,6 +2,8 @@ import { useEffect } from "react";
 import { InstagramEmbed } from "react-social-media-embed";
 
 function Home() {
+
+  // Load Twitter widget
   useEffect(() => {
     const script = document.createElement("script");
     script.src = "https://platform.twitter.com/widgets.js";

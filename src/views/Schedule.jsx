@@ -5,6 +5,7 @@ import movies from "../data/movies.json";
 function Schedule() {
   const [showModal, setShowModal] = useState(false);
 
+  // Functions for playing and pausing videos on hover
   function playVid() {
     let vid1 = document.getElementById("vid1");
     vid1.play();
@@ -13,7 +14,6 @@ function Schedule() {
     let vid1 = document.getElementById("vid1");
     vid1.pause();
   }
-
   function playVid2() {
     let vid2 = document.getElementById("vid2");
     vid2.play();
@@ -201,9 +201,9 @@ function Schedule() {
                   Scifi, Horror, Comedy
                 </h3>
                 <p className=" text-lg font-medium text-oc-space-blue p-4 bg-oc-cold-white h-full w-full ">
-                  First look at this film will make you think its "just" a
+                  {`First look at this film will make you think its "just" a
                   showcase of a 3d model of Leppävaara campus, but it quickly
-                  evolves into something far more sinister...
+                  evolves into something far more sinister...`}
                 </p>
                 <div className=" buttonDiv bg-oc-cold-white w-full flex justify-center items-center rounded-b-md pb-4">
                   <button

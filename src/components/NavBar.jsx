@@ -3,10 +3,14 @@ import { useNavigate } from "react-router-dom";
 
 function NavBar() {
   const [burger, setBurger] = useState(false);
+  const navigate = useNavigate();
 
+  // Toggle burger menu
   const toggleBurger = () => {
     setBurger(!burger);
     const body = document.querySelector("body");
+
+    // If burger is open, disable scrolling
     if (burger) {
       body.style.overflow = "visible";
     } else {
@@ -14,8 +18,7 @@ function NavBar() {
     }
   };
 
-  const navigate = useNavigate();
-
+  // Functions for navigating to different pages
   const navigateHome = () => {
     if (burger) {
       toggleBurger();

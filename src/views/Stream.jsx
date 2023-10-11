@@ -13,13 +13,13 @@ function Stream() {
   const [videoLoop, setVideoLoop] = useState(true);
   const [nextMovie, setNextMovie] = useState(null);
   const [showNextMovie, setShowNextMovie] = useState(true);
-
   const [donation, setDonation] = useState({});
   const [currentDonation, setCurrentDonation] = useState({});
   const donations = useRef([]);
-
+  let confettiDone = false;
   let moviePlaying = false;
 
+  // Render falling confetti effect on the screen using tsparticles
   const renderConfetti = async () => {
     const duration = 0.5 * 1000,
       animationEnd = Date.now() + duration,
@@ -54,63 +54,21 @@ function Stream() {
     }, 50);
   };
 
+  // Open chat in a new window
   const handleWindowButton = () => {
     setWindowOpen(!windowOpen);
   };
 
-  useEffect(() => {
-    const videoJs = document.querySelector('video');
-    const vjsControlBar = document.querySelector('.vjs-control-bar');
-    if (windowOpen) {
-      videoJs.style.borderRadius = '0px';
-      videoJs.style.backgroundColor = '#191e39';
-      vjsControlBar.style.borderRadius = '0px';
-    } else {
-      videoJs.style.borderRadius = '0.375rem';
-      videoJs.style.backgroundColor = '#37436d';
-      vjsControlBar.style.borderRadius = '0 0 0.375rem 0.375rem';
-    }
-  }, [windowOpen]);
-
-  const renderDonation = () => {
-    const donation = donations.current[0];
-    if (!donation) return;
-    setCurrentDonation(donation);
-    setShowDonationBox(true);
-
-    setTimeout(() => {
-      setShowDonationContent(true);
-      if (donation.donateProgress == donation.donateGoal) {
-        renderConfetti();
-      }
-    }, 300);
-
-    setTimeout(() => {
-      setShowDonationContent(false);
-      setShowDonationBox(false);
-    }, 5000);
-
-    setTimeout(() => {
-      donations.current.shift();
-      renderDonation();
-    }, 6000);
-  };
-
-  useEffect(() => {
-    if (donation.username) {
-      donations.current.push(donation);
-      if (donations.current.length == 1) {
-        renderDonation();
-      }
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [donation]);
-
+  // Check if a movie should be playing
+  // If so set the video source to the movie
   const checkMoviePlaying = () => {
+
+    // Get current date and time
     const currentDate = new Date().toLocaleDateString('fi-FI');
     const currentTime = new Date().toLocaleTimeString('fi-FI');
     let matchingTime = false;
 
+    // Loop through all movies in the json file
     Object.entries(movies).forEach((entry) => {
       const movie = entry[1];
       const premiereDate = movie.premiereDate;
@@ -118,15 +76,20 @@ function Stream() {
       const expireTime = movie.expireTime;
       const movieTicket = movie.ticket;
 
+      // Check if current date and time matches the movie
       if (currentDate === premiereDate && currentTime >= premiereTime && currentTime <= expireTime) {
         matchingTime = true;
+
+        // If a movie is not already playing, set the video source to the movie
         if (!moviePlaying) {
           moviePlaying = true;
           setShowNextMovie(false);
           setVideoLoop(false);
 
-          const ticket = localStorage.getItem(movieTicket);
+          const ticket = localStorage.getItem(movieTicket); // Check if user has a ticket for the movie
 
+          // If user has a ticket, play the movie
+          // Otherwise show a message that the user does not have a ticket
           if (ticket) {
             setVideoSource({
               src: './movies/countdown.mp4',
@@ -149,6 +112,8 @@ function Stream() {
       }
     });
 
+    // If no movie is playing, set the video source to null
+    // This will make the video player show the default video
     if (!matchingTime && moviePlaying) {
       moviePlaying = false;
       setShowNextMovie(true);
@@ -157,11 +122,15 @@ function Stream() {
     }
   };
 
+  // Update the next movie info
   const updateNextMovieIfo = () => {
+
+    // Get current date and time
     const currentDate = new Date().toLocaleDateString('fi-FI');
     const currentTime = new Date().toLocaleTimeString('fi-FI');
     const movieList = [];
 
+    // Loop through all movies in the json file
     Object.entries(movies).forEach((entry) => {
       movieList.push(entry[1]);
     });
@@ -172,16 +141,84 @@ function Stream() {
       const premiereTime = movie.premiereTime;
       const expireTime = movie.expireTime;
 
+      // If current date and time matches the movie, set the next movie info
       if (currentDate == premiereDate && currentTime <= premiereTime) {
         setNextMovie(movie);
-      } else if (currentDate == premiereDate && currentTime >= expireTime) {
+      } 
+      // If current date matches the movie and the movie has ended, show the next movie info
+      else if (currentDate == premiereDate && currentTime >= expireTime) {
         setNextMovie(movieList[i + 1]);
-      } else if (currentDate == premiereDate && i == movieList.length - 1) {
+      } 
+      // If it's the last movie, don't show anything
+      else if (currentDate == premiereDate && i == movieList.length - 1) {
         setNextMovie(null);
       }
     }
   };
 
+  // Change the video player style depending on if the chat is open or not
+  // When the chat is open, the video player will be fullscreen
+  useEffect(() => {
+    const videoJs = document.querySelector('video');
+    const vjsControlBar = document.querySelector('.vjs-control-bar');
+    if (windowOpen) {
+      videoJs.style.borderRadius = '0px';
+      videoJs.style.backgroundColor = '#191e39';
+      vjsControlBar.style.borderRadius = '0px';
+    } else {
+      videoJs.style.borderRadius = '0.375rem';
+      videoJs.style.backgroundColor = '#37436d';
+      vjsControlBar.style.borderRadius = '0 0 0.375rem 0.375rem';
+    }
+  }, [windowOpen]);
+
+  // Render donation box containing the latest donation
+  const renderDonation = () => {
+    const donation = donations.current[0];  // Get the latest donation from the donations array
+    if (!donation) return;  // If there are no donations, return
+
+    // Open the donation box and set the current donation
+    setCurrentDonation(donation);
+    setShowDonationBox(true);
+
+    // Wait for the donation box to open and then show the donation content
+    setTimeout(() => {
+      setShowDonationContent(true);
+      // If the donation goal has been reached, render the confetti effect
+      if (donation.donateProgress >= donation.donateGoal) {
+        // Show the confetti effect only once
+        if (!confettiDone) {
+          confettiDone = true;
+          renderConfetti();
+        }
+      }
+    }, 300);
+
+    // Close the donation box after 5 seconds
+    setTimeout(() => {
+      setShowDonationContent(false);
+      setShowDonationBox(false);
+    }, 5000);
+
+    // Remove the donation from the donations array after 6 seconds and render the next donation
+    setTimeout(() => {
+      donations.current.shift();
+      renderDonation();
+    }, 6000);
+  };
+
+  // Receive donation data from the chat component and add it to the donations array
+  useEffect(() => {
+    if (donation.username) {
+      donations.current.push(donation);
+      if (donations.current.length == 1) {
+        renderDonation();
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [donation]);
+
+  // Check if a movie should be playing and update the next movie info every second
   useEffect(() => {
     checkMoviePlaying();
     updateNextMovieIfo();
@@ -194,6 +231,7 @@ function Stream() {
 
   return (
     <div className={windowOpen ? 'flex justify-center h-full overflow-hidden' : 'flex flex-col lg:flex-row items-center h-full'}>
+      {/* Video and donations */}
       <div id="video" className={windowOpen ? 'h-full w-full' : 'h-full w-full flex-1 p-4 pb-2 lg:pb-4 lg:pr-2 relative'}>
         <div className={showDonationBox ? 'donate-box' : 'donate-box h-0 p-0'} style={{ transition: 'height 0.3s ease-in-out' }}>
           <div className="w-full h-full rounded-md bg-oc-space-blue">
@@ -208,7 +246,7 @@ function Stream() {
                       style={{ width: (currentDonation?.donateProgress / currentDonation?.donateGoal) * 100 + '%' }}
                     ></div>
                     <p className="absolute w-full text-center text-white">
-                      {'Progress: ' + currentDonation?.donateProgress + ' / ' + currentDonation?.donateGoal}
+                      {'Progress: ' + currentDonation?.donateProgress + ' / ' + currentDonation?.donateGoal + " €"}
                     </p>
                   </div>
                 </div>
@@ -228,6 +266,7 @@ function Stream() {
           <VideoPlayer source={videoSource} loop={videoLoop}></VideoPlayer>
         </div>
       </div>
+      {/* Stream chat */}
       <div id="chat" className={windowOpen ? '' : 'w-full h-[65%] lg:flex-none lg:w-[25rem] lg:h-full p-4 pt-2 lg:pt-4 lg:pl-2'}>
         {windowOpen ? (
           <NewWindow>
